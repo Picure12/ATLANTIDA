@@ -33,7 +33,7 @@
 </head>
 
 <body>
-    
+    $
 <?php
 
 $numeros = array(3, 8, 7, -6);
