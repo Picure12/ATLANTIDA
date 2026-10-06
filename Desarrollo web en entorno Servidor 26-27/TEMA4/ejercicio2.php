@@ -27,7 +27,7 @@ echo "<th>Geografía</th>";
 echo "<th>Media</th>";
 echo "</tr>";
 
-for each($alumnos as $nombre => $notas) {
+foreach($alumnos as $nombre => $notas) {
     
     $media = ($notas[0] + $notas[1] + $notas[2] + $notas[3]) / 4;
     echo "<tr>";
@@ -42,17 +42,22 @@ for each($alumnos as $nombre => $notas) {
     echo "</tr>";
 }
 
+echo "</table>";
+
 $buscarPersona = "Ana";
 
-echo "<h3>Notas de $buscarPersona</h3>";
-if (isset($alumnos[$alumnoBuscado])) {
+echo "<h3>Notas de $alumnoBuscado</h3>";
+
+if (isset($alumnos[$buscarPersona])) {
     
-    $notas = $alumnos[$alumnoBuscado];
+    $notas = $alumnos[$buscarPersona];
 
     echo "Matematicas: " . $notas[0] . "<br>";
     echo "Lengua: " . $notas[1] . "<br>";
     echo "Ciencias Naturales: " . $notas[2] . "<br>";
     echo "Geografía: " . $notas[3] . "<br>";
+
+
 }else{
     echo "El alumno no existe"; 
 }
