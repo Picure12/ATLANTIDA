@@ -1,4 +1,4 @@
-```php
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -145,4 +145,4 @@ echo $menor["nombre"];
 
 </body>
 </html>
-```
+
