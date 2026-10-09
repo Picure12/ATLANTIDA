@@ -1,35 +1,38 @@
-
+```php
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mascotas</title>
+
     <style>
-        <style>
-    table {
-        border-collapse: collapse;
-        width: 600px;
-    }
+        table {
+            border-collapse: collapse;
+            width: 600px;
+        }
 
-    th {
-        background-color: lightblue;
-        padding: 8px;
-    }
+        th {
+            background-color: lightblue;
+            padding: 8px;
+        }
 
-    td {
-        padding: 8px;
-        border: 1px solid black;
-    }
+        td {
+            padding: 8px;
+            border: 1px solid black;
+        }
 
-    tr:nth-child(even) {
-        background-color: lightgray;
-    }
-</style>
-    </style>    
+        tr:nth-child(even) {
+            background-color: lightgray;
+        }
+    </style>
 </head>
+
 <body>
+
 <?php
+
 $mascotas = array(
     array(
         "nombre" => "Pepe",
@@ -63,28 +66,55 @@ $mascotas = array(
     )
 );
 
-echo "<h3>Mascotas</3>";
 
-foreach ($mascotas as $mascota){
-    echo $mascota["Nombre"]. "</br>"
+// Mostrar todas las mascotas
+
+echo "<h3>Mascotas</h3>";
+
+echo "<table>";
+echo "<tr>";
+echo "<th>Nombre</th>";
+echo "<th>Peso</th>";
+echo "<th>Color</th>";
+echo "<th>Edad</th>";
+echo "</tr>";
+
+foreach ($mascotas as $mascota) {
+    echo "<tr>";
+    echo "<td>" . $mascota["nombre"] . "</td>";
+    echo "<td>" . $mascota["peso"] . "</td>";
+    echo "<td>" . $mascota["color"] . "</td>";
+    echo "<td>" . $mascota["edad"] . "</td>";
+    echo "</tr>";
 }
 
-echo "<h3>Peso de la mascota</h3>";
+echo "</table>";
 
-echo $mascota[3]["Peso"] . "kg";
 
-echo "<h3> Color Sparky</h3>"
+// Mostrar el peso de la mascota con código 3
 
-foreach($mascotas as $mascota){
-    if($mascota["nombre"] == "Sparky"){
+echo "<h3>Peso de la mascota con código 3</h3>";
+
+echo $mascotas[3]["peso"] . " kg";
+
+
+// Mostrar el color de Sparky
+
+echo "<h3>Color de Sparky</h3>";
+
+foreach ($mascotas as $mascota) {
+    if ($mascota["nombre"] == "Sparky") {
         echo $mascota["color"];
     }
 }
 
-$mayor = [$mascotas[0]];
 
-foreach ($mascotas as $mascota){
-    if($mascotas["edad"] > $mayor["edad"]){
+// Mostrar la mascota de mayor edad
+
+$mayor = $mascotas[0];
+
+foreach ($mascotas as $mascota) {
+    if ($mascota["edad"] > $mayor["edad"]) {
         $mayor = $mascota;
     }
 }
@@ -97,18 +127,22 @@ echo "Color: " . $mayor["color"] . "<br>";
 echo "Edad: " . $mayor["edad"] . "<br>";
 
 
+// Mostrar la mascota que pesa menos
+
 $menor = $mascotas[0];
 
-foreach($mascotas as $mascota){
-
-    if ($mascotas["peso"]<$menor["peso"]){
-        $menor = $mascota; 
-    } 
+foreach ($mascotas as $mascota) {
+    if ($mascota["peso"] < $menor["peso"]) {
+        $menor = $mascota;
+    }
 }
-echo "<h3>Mascota que pesa menos</h3>"
+
+echo "<h3>Mascota que pesa menos</h3>";
+
 echo $menor["nombre"];
+
 ?>
 
-    
 </body>
 </html>
+```
