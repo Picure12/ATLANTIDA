@@ -5,6 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        <style>
+    table {
+        border-collapse: collapse;
+        width: 600px;
+    }
+
+    th {
+        background-color: lightblue;
+        padding: 8px;
+    }
+
+    td {
+        padding: 8px;
+        border: 1px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: lightgray;
+    }
+</style>
+    </style>    
 </head>
 <body>
 <?php
@@ -44,12 +66,12 @@ $mascotas = array(
 echo "<h3>Mascotas</3>";
 
 foreach ($mascotas as $mascota){
-    echo $mascota["Nombre: "]. "</br>"
+    echo $mascota["Nombre"]. "</br>"
 }
 
 echo "<h3>Peso de la mascota</h3>";
 
-echo $mascota[3]["Peso: "] . "kg";
+echo $mascota[3]["Peso"] . "kg";
 
 echo "<h3> Color Sparky</h3>"
 
