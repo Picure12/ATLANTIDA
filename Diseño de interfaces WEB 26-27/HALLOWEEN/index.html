@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal del Inframundo - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="portal-container">
+        <!-- Calavera Interactiva Gigante y Realista -->
+        <div class="skull-wrapper" id="skullWrapper">
+            <svg viewBox="0 0 300 350" class="skull-svg">
+                <!-- Detalles de profundidad y pómulos -->
+                <g class="cranium">
+                    <path class="bone-shade"
+                        d="M70,90 C70,40 230,40 230,90 C260,130 260,190 235,230 C200,260 100,260 65,230 C40,190 40,130 70,90 Z" />
+                    <path class="bone"
+                        d="M90,70 C90,25 210,25 210,70 C245,80 270,130 255,190 C240,240 200,265 150,265 C100,265 60,240 45,190 C30,130 55,80 90,70 Z" />
+
+                    <!-- Fosas Nasales más detalladas -->
+                    <path class="bone-shade" d="M142,160 Q150,150 158,160 L165,198 Q150,205 135,198 Z" />
+
+                    <!-- Cavidades Oculares amplias -->
+                    <path class="eye"
+                        d="M85,120 C100,110 130,115 130,145 C130,175 105,170 85,155 C70,145 70,130 85,120 Z" />
+                    <path class="eye"
+                        d="M215,120 C200,110 170,115 170,145 C170,175 195,170 215,155 C230,145 230,130 215,120 Z" />
+
+                    <!-- Nariz -->
+                    <polygon class="nose" points="150,165 138,198 162,198" />
+
+                    <!-- Grietas/Deturas estéticas óseas -->
+                    <path d="M150,25 L150,45" stroke="#282836" stroke-width="1.5" />
+                    <path d="M75,180 C70,190 60,195 50,190" stroke="#282836" stroke-width="1.5" fill="none" />
+                    <path d="M225,180 C230,190 240,195 250,190" stroke="#282836" stroke-width="1.5" fill="none" />
+                </g>
+
+                <!-- Mandíbula (Se anima al hacer clic) -->
+                <g class="jaw" id="jaw">
+                    <path class="bone"
+                        d="M60,265 C80,260 220,260 240,265 C255,295 230,335 150,335 C70,335 45,295 60,265 Z" />
+                    <!-- Dientes esculpidos -->
+                    <path class="teeth"
+                        d="M95,265 L102,288 L110,265 L118,288 L126,265 L134,288 L142,265 L150,288 L158,265 L166,288 L174,265 L182,288 L190,265 L198,288 L205,265" />
+                </g>
+            </svg>
+
+            <!-- Contenedor del Formulario (Oculto inicialmente dentro de la boca) -->
+            <div class="form-container" id="formContainer">
+                <!-- Formulario de Login -->
+                <form id="loginForm" class="auth-form">
+                    <h2>ACCESO</h2>
+                    <div class="input-group">
+                        <input type="email" required placeholder=" ">
+                        <label>Correo Electrónico</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" required placeholder=" ">
+                        <label>Contraseña</label>
+                    </div>
+                    <button type="submit" class="btn">Entrar</button>
+                    <p class="switch-text">¿No tienes cuenta? <span id="showRegister">Regístrate</span></p>
+                </form>
+
+                <!-- Formulario de Registro -->
+                <form id="registerForm" class="auth-form hidden">
+                    <h2>REGISTRO</h2>
+                    <div class="input-group">
+                        <input type="text" required placeholder=" ">
+                        <label>Nombre de Usuario</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" required placeholder=" ">
+                        <label>Correo Electrónico</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" required placeholder=" ">
+                        <label>Contraseña</label>
+                    </div>
+                    <button type="submit" class="btn">Registrarse</button>
+                    <p class="switch-text">¿Ya tienes cuenta? <span id="showLogin">Inicia Sesión</span></p>
+                </form>
+            </div>
+        </div>
+
+        <p class="hint" id="hintText">Haz clic en la calavera para abrir el portal</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
