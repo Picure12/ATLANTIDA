@@ -19,11 +19,9 @@ function tablaColores ($color1, $color2, $color3) {
     echo "</table>";
 }
 
-tablaColores ($color1, $color2, $color3);
+tablaColores ("#e74c3c", "#2ecc71", "#3498db");
 
 ?>
 
-
-    
 </body>
 </html>
