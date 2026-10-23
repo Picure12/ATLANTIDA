@@ -89,6 +89,19 @@
 
         <p class="hint" id="hintText">Haz clic en la calavera para abrir el portal</p>
     </div>
+    <!-- Pantalla negra de transición -->
+    <div class="transition-overlay" id="transitionOverlay">
+        <p>HAS CRUZADO EL PORTAL</p>
+    </div>
+
+    <!-- Página principal (oculta hasta que inicies sesión) -->
+    <main class="dashboard hidden" id="dashboard">
+        <h1>BIENVENIDO, <span id="nombreUsuario"></span></h1>
+        <p>Aquí irá el contenido principal.</p>
+        <button class="btn" id="salir">Salir</button>
+    </main>
+
+
 
     <script src="script.js"></script>
 </body>

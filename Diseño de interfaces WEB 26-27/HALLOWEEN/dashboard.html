@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal del Inframundo - Principal</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <h1>BIENVENIDO, <span id="nombreUsuario"></span>💀</h1>
+    <p>Has cruzado el portal. Aquí irá el contenido principal.</p>
+    <button class="btn-salir" id="salir">Salir</button>
+
+    <script>
+        // Proteger la página: si no hay sesión, vuelve al login
+        if (sessionStorage.getItem('sesion') !== 'activa') {
+            window.location.href = 'index.html';
+        }
+
+        // Saludar al usuario
+        document.getElementById('nombreUsuario').textContent =
+            localStorage.getItem('usuarioActual') || 'ALMA ERRANTE';
+
+        // Cerrar sesión
+        document.getElementById('salir').addEventListener('click', () => {
+            sessionStorage.removeItem('sesion');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+
+</html>

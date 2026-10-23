@@ -1,0 +1,38 @@
+/* ==========================================================
+   PÁGINA PRINCIPAL (dashboard)
+   ========================================================== */
+
+/* Fondo oscuro, texto claro y todo centrado en columna.
+   min-height (en vez de height) permite que haya scroll si el
+   contenido crece cuando metáis más cosas en la página. */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #050505;
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;         /* centrado horizontal */
+    justify-content: center;     /* centrado vertical */
+    text-align: center;
+}
+
+/* Título de bienvenida: verde con brillo (text-shadow) */
+h1 {
+    color: #2ecc71;
+    letter-spacing: 4px;         /* separación entre letras */
+    text-shadow: 0 0 12px rgba(46, 204, 113, 0.5);
+}
+
+/* Botón de cerrar sesión */
+.btn-salir {
+    margin-top: 24px;            /* separación con el texto de arriba */
+    padding: 10px 24px;
+    background: #2ecc71;
+    color: #050505;              /* texto oscuro sobre fondo verde */
+    border: none;
+    font-family: inherit;        /* hereda la fuente Courier del body */
+    font-weight: bold;
+    cursor: pointer;
+}
