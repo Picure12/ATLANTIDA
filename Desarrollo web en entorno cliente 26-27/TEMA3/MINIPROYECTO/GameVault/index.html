@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GameVault: catálogo y análisis de videojuegos con JavaScript.">
+    <title>GameVault | Catálogo de videojuegos</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script type="module" src="js/app.js"></script>
+</head>
+<body>
+    <header class="hero">
+        <nav class="nav container">
+            <a class="logo" href="#">🎮 GameVault</a>
+            <span class="nav-tag">TU BIBLIOTECA GAMING</span>
+        </nav>
+        <div class="hero-content container">
+            <p class="eyebrow">EXPLORA · COMPARA · DESCUBRE</p>
+            <h1>Tu próximo juego<br><span>empieza aquí.</span></h1>
+            <p class="hero-description">Un catálogo interactivo para descubrir videojuegos, consultar sus valoraciones y encontrar tu próxima aventura.</p>
+            <a class="hero-button" href="#catalogo">Explorar catálogo <span>↓</span></a>
+        </div>
+        <div class="hero-orb orb-one"></div>
+        <div class="hero-orb orb-two"></div>
+    </header>
+
+    <main class="container main-content" id="contenido-principal">
+        <section class="section" id="catalogo">
+            <div class="section-heading">
+                <div><p class="eyebrow">LA COLECCIÓN</p><h2>Catálogo completo</h2></div>
+                <span class="section-note" id="total-catalogo">Cargando juegos...</span>
+            </div>
+            <div id="catalogo-juegos" class="game-grid"></div>
+        </section>
+
+        <section class="section" id="estadisticas">
+            <div class="section-heading">
+                <div><p class="eyebrow">LOS NÚMEROS</p><h2>Estadísticas generales</h2></div>
+            </div>
+            <div class="stats-grid" id="estadisticas-contenido"></div>
+        </section>
+
+        <section class="section" id="top-valorados">
+            <div class="section-heading">
+                <div><p class="eyebrow">LOS FAVORITOS</p><h2>Top 5 mejor valorados</h2></div>
+                <span class="section-note">Ordenados por puntuación</span>
+            </div>
+            <div id="mejor-valorados" class="ranking-list"></div>
+        </section>
+
+        <section class="section" id="verificaciones">
+            <div class="section-heading">
+                <div><p class="eyebrow">COMPROBACIONES</p><h2>Verificaciones del catálogo</h2></div>
+            </div>
+            <div class="panel verification-grid" id="verificaciones-contenido"></div>
+        </section>
+
+        <section class="section" id="filtros">
+            <div class="section-heading">
+                <div><p class="eyebrow">ENCUENTRA TU ESTILO</p><h2>Filtrar por categoría</h2></div>
+            </div>
+            <div class="panel">
+                <div class="control-row">
+                    <label for="filtro-categoria">Selecciona una categoría</label>
+                    <select id="filtro-categoria"></select>
+                </div>
+                <p class="result-count" id="contador-filtro"></p>
+                <div id="resultado-filtro" class="game-grid compact-grid"></div>
+            </div>
+        </section>
+
+        <section class="section" id="premium">
+            <div class="section-heading">
+                <div><p class="eyebrow">CALIDAD DESTACADA</p><h2>Selección premium</h2></div>
+                <span class="premium-label">★ 9.0 O MÁS</span>
+            </div>
+            <div id="juegos-premium" class="game-grid"></div>
+        </section>
+
+        <section class="section" id="busqueda">
+            <div class="section-heading">
+                <div><p class="eyebrow">¿BUSCAS UNO EN CONCRETO?</p><h2>Sistema de búsqueda</h2></div>
+            </div>
+            <div class="search-grid">
+                <div class="panel">
+                    <h3>Buscar por ID</h3>
+                    <p class="muted">Introduce un identificador, por ejemplo GAME001.</p>
+                    <div class="input-row"><input id="buscar-id" type="text" placeholder="GAME001"><button id="boton-id">Buscar</button></div>
+                    <div id="resultado-id" class="search-result" aria-live="polite"></div>
+                </div>
+                <div class="panel">
+                    <h3>Buscar por nombre</h3>
+                    <p class="muted">Puedes escribir el nombre completo o una parte.</p>
+                    <div class="input-row"><input id="buscar-nombre" type="text" placeholder="Red Dead Redemption 2"><button id="boton-nombre">Buscar</button></div>
+                    <div id="resultado-nombre" class="search-result" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="propiedades">
+            <div class="section-heading">
+                <div><p class="eyebrow">BAJO EL CAPÓ</p><h2>Análisis de propiedades</h2></div>
+            </div>
+            <div class="panel object-panel">
+                <p class="muted">Trabajamos con el primer videojuego del catálogo para demostrar los métodos de objetos de JavaScript.</p>
+                <div class="object-columns">
+                    <div><h3>Object.keys()</h3><pre id="salida-keys"></pre></div>
+                    <div><h3>Object.entries()</h3><pre id="salida-entries"></pre></div>
+                    <div><h3>Object.fromEntries()</h3><pre id="salida-from-entries"></pre></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="economicos">
+            <div class="section-heading">
+                <div><p class="eyebrow">BUENO, BONITO Y BARATO</p><h2>Top 5 más económicos</h2></div>
+                <span class="section-note">Ordenados por precio</span>
+            </div>
+            <div id="mas-economicos" class="ranking-list"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <a class="logo" href="#">🎮 GameVault</a>
+            <p>Proyecto DWEC · Desarrollo Web en Entorno Cliente</p>
+            <p>Creado por <strong>Adrián Esteban</strong> · <span id="anio"></span></p>
+            <p class="footer-tech">HTML · CSS · JavaScript ES6 · Módulos</p>
+        </div>
+    </footer>
+</body>
+</html>
