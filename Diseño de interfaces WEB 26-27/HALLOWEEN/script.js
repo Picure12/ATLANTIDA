@@ -1,8 +1,6 @@
-
-
-const sonidoEntrada = new Audio('sounds/puerta.mp3');
+// Sonido al iniciar sesión / registrarse
+const sonidoEntrada = new Audio('sounds/portail-du-nether.mp3');
 sonidoEntrada.volume = 0.6;
-
 
 const skullWrapper = document.getElementById('skullWrapper');
 const hintText = document.getElementById('hintText');
@@ -11,13 +9,8 @@ const registerForm = document.getElementById('registerForm');
 const showRegister = document.getElementById('showRegister');
 const showLogin = document.getElementById('showLogin');
 const overlay = document.getElementById('transitionOverlay');
-const dashboard = document.getElementById('dashboard');
-const portal = document.querySelector('.portal-container');
-const nombreUsuario = document.getElementById('nombreUsuario');
-const botonSalir = document.getElementById('salir');
 
-
-
+// Abrir la mandíbula al hacer clic en la calavera
 skullWrapper.addEventListener('click', (e) => {
     if (e.target.closest('.form-container')) return;
 
@@ -27,6 +20,7 @@ skullWrapper.addEventListener('click', (e) => {
     }
 });
 
+// Cambiar entre Login y Registro
 showRegister.addEventListener('click', () => {
     loginForm.classList.add('hidden');
     registerForm.classList.remove('hidden');
@@ -37,14 +31,7 @@ showLogin.addEventListener('click', () => {
     loginForm.classList.remove('hidden');
 });
 
-// Oculta el portal y muestra la página principal
-function mostrarDashboard() {
-    portal.style.display = 'none';
-    nombreUsuario.textContent = localStorage.getItem('usuarioActual') || 'ALMA ERRANTE';
-    dashboard.classList.remove('hidden');
-    requestAnimationFrame(() => dashboard.classList.add('visible')); // activa el fundido
-}
-
+// Cierra la mandíbula, suena el sonido, funde a negro y redirige a dashboard.html
 function entrarAlPortal(message) {
     skullWrapper.classList.remove('open');
     hintText.textContent = message;
@@ -55,27 +42,14 @@ function entrarAlPortal(message) {
     sonidoEntrada.currentTime = 0;
     sonidoEntrada.play().catch(() => {});
 
-    // 0.8s: la mandíbula ya cerró -> la pantalla se funde a negro
+    // 0.85s: la mandíbula ya cerró -> fundido a negro con "HAS CRUZADO EL PORTAL"
     setTimeout(() => overlay.classList.add('active'), 850);
 
-    // 2.8s: con la pantalla en negro cambiamos a la página principal
-    // y quitamos el negro para que aparezca con fundido
+    // 2.8s: redirige a la página principal
     setTimeout(() => {
-        mostrarDashboard();
-        overlay.classList.remove('active');
-    }, 2800);
+        window.location.href = 'dashboard.html';
+    }, 6500);
 }
-
-// Si ya había sesión iniciada (al recargar la página), entra directo
-if (sessionStorage.getItem('sesion') === 'activa') {
-    mostrarDashboard();
-}
-
-// Cerrar sesión: vuelve al portal
-botonSalir.addEventListener('click', () => {
-    sessionStorage.removeItem('sesion');
-    location.reload();
-});
 
 // REGISTRO: guarda el usuario y entra
 registerForm.addEventListener('submit', (e) => {
@@ -102,10 +76,13 @@ loginForm.addEventListener('submit', (e) => {
     const [email, password] = loginForm.querySelectorAll('input');
 
     const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-    const usuario = usuarios.find(u => u.email === email.value && u.password === password.value);
+    const usuario = usuarios.find(u =>
+        u.email.toLowerCase() === email.value.trim().toLowerCase() &&
+        u.password === password.value
+    );
 
     if (!usuario) {
-        console.log ("Correo o contraseña incorrecta")
+        alert('Correo o contraseña incorrectos');
         return;
     }
 
