@@ -1,7 +1,7 @@
 
 
-const sonidoEntrada = new Audio('sounds/puerta.mp3');
-sonidoEntrada.volume = 0.6;
+const sonidoEntrada = new Audio('audios/PuertaLogin.mp3');
+sonidoEntrada.volume = 0.1;
 
 
 const skullWrapper = document.getElementById('skullWrapper');
@@ -56,7 +56,7 @@ function entrarAlPortal(message) {
     sonidoEntrada.play().catch(() => {});
 
     // 0.8s: la mandíbula ya cerró -> la pantalla se funde a negro
-    setTimeout(() => overlay.classList.add('active'), 850);
+    setTimeout(() => overlay.classList.add('active'), 1200);
 
     // 2.8s: con la pantalla en negro cambiamos a la página principal
     // y quitamos el negro para que aparezca con fundido
@@ -102,10 +102,13 @@ loginForm.addEventListener('submit', (e) => {
     const [email, password] = loginForm.querySelectorAll('input');
 
     const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-    const usuario = usuarios.find(u => u.email === email.value && u.password === password.value);
+    const usuario = usuarios.find(u =>
+        u.email.toLowerCase() === email.value.trim().toLowerCase() &&
+        u.password === password.value
+    );
 
     if (!usuario) {
-        console.log ("Correo o contraseña incorrecta")
+        alert('Correo o contraseña incorrectos');
         return;
     }
 
