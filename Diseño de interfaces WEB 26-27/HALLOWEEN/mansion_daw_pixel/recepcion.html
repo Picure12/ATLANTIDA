@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recepción · La mansión de la medianoche</title>
+<link rel="stylesheet" href="recepcion.css">
+</head>
+<body>
+<main class="game" aria-label="Recepción de la mansión">
+  <img class="scene" src="mansion_daw_pixel\assets\prueba.jpg" alt="Recepción pixel art de la mansión: chimenea, reloj, escalera, mostrador de Don Eustaquio y puerta lateral">
+  <button class="hotspot butler" data-key="butler" aria-label="Hablar con Don Eustaquio"></button>
+  <button class="hotspot fireplace" data-key="fireplace" aria-label="Examinar la chimenea"></button>
+  <button class="hotspot clock" data-key="clock" aria-label="Examinar el reloj"></button>
+  <button class="hotspot portraits" data-key="portraits" aria-label="Examinar los retratos"></button>
+  <button class="hotspot stairs" data-key="stairs" aria-label="Examinar la escalera"></button>
+  <button class="hotspot door" data-key="door" aria-label="Examinar la puerta lateral"></button>
+  <button class="hotspot flowers" data-key="flowers" aria-label="Examinar las flores"></button>
+  <div class="dialogue-update" aria-live="polite">
+    <div class="speaker" id="speaker">DON EUSTAQUIO</div>
+    <p id="line">Bienvenido a la mansión, señor. Permítame ocuparme de su estancia.</p>
+  </div>
+  <button class="next" id="next" aria-label="Continuar diálogo">▼</button>
+  <a class="back" href="index.html" aria-label="Volver al jardín">← VOLVER AL JARDÍN</a>
+</main>
+<script src="recepcion.js"></script>
+</body>
+</html>
