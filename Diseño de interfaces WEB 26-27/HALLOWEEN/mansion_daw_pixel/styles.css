@@ -1,0 +1,1409 @@
+:root {
+    color-scheme: dark;
+    --ink: #11131a;
+    --night: #171b25;
+    --panel: #24212a;
+    --bone: #e2d3b2;
+    --muted-bone: #a99a7c;
+    --rust: #bd7045;
+    --amber: #ffb45e;
+    --line: #625045;
+    --pixel-shadow: 5px 5px 0 #090a0f;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html, body { min-height: 100%; }
+body {
+    margin: 0;
+    color: var(--bone);
+    background: #0d1017;
+    font-family: "Special Elite", "Courier New", monospace;
+    image-rendering: pixelated;
+}
+button, input { font: inherit; }
+button { color: inherit; }
+button:focus-visible, input:focus-visible {
+    outline: 3px solid #ffc46e;
+    outline-offset: 4px;
+}
+
+.app-shell {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% 12%, rgba(69, 76, 94, .25), transparent 43%),
+        linear-gradient(180deg, #151923, #0d1017 75%);
+}
+.screen { min-height: 100vh; }
+
+/* ACCESO Y RETRATO */
+.login-screen {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: minmax(210px, 310px) minmax(320px, 570px);
+    align-items: center;
+    justify-content: center;
+    gap: clamp(35px, 7vw, 110px);
+    padding: 55px 7vw;
+    background:
+        radial-gradient(circle at 78% 20%, rgba(114, 89, 77, .20), transparent 25%),
+        radial-gradient(circle at 18% 85%, rgba(71, 81, 89, .19), transparent 28%),
+        linear-gradient(135deg, #1b202b, #10131b 65%, #17151a);
+}
+.login-screen::before, .login-screen::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+}
+.login-screen::before {
+    inset: 0;
+    opacity: .17;
+    background-image: radial-gradient(#b6a48a 1px, transparent 1px);
+    background-size: 19px 19px;
+}
+.login-screen::after {
+    left: 0; right: 0; bottom: 0; height: 15px;
+    background: repeating-linear-gradient(90deg, #2c2b30 0 24px, #191b21 24px 48px);
+    border-top: 3px solid #51443d;
+}
+.login-grain {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: .12;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,.3) 4px);
+}
+.portrait-card {
+    position: relative;
+    width: min(100%, 300px);
+    margin: 0 auto;
+    padding: 9px;
+    background: #29252a;
+    border: 2px solid #716052;
+    box-shadow: 9px 9px 0 #08090e, inset 0 0 0 3px #12131a;
+    transform: rotate(-1.2deg);
+}
+.portrait-card::before, .portrait-card::after {
+    content: "✦";
+    position: absolute;
+    z-index: 2;
+    color: #d79555;
+    font-size: 14px;
+}
+.portrait-card::before { top: -12px; left: -11px; }
+.portrait-card::after { right: -10px; bottom: 45px; }
+.portrait-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 266 / 355;
+    object-fit: cover;
+    object-position: top center;
+    filter: contrast(1.08) saturate(.82);
+    image-rendering: auto;
+}
+.portrait-caption {
+    display: grid;
+    gap: 6px;
+    padding: 13px 10px 10px;
+    background: #17171d;
+    border-top: 2px solid #6c5548;
+}
+.portrait-caption strong { font: 20px "IM Fell English SC", Georgia, serif; color: #ead8b9; }
+.portrait-caption span:last-child { color: #9e9280; font-size: 10px; line-height: 1.5; }
+.caption-kicker, .eyebrow, .login-footnote { font-size: 9px; letter-spacing: .19em; color: #b9825c; }
+.login-content { width: 100%; max-width: 570px; text-align: center; }
+.eyebrow { margin: 0 0 18px; }
+.eyebrow span { padding: 0 9px; color: #e2b77e; }
+.login-content h1 {
+    margin: 0;
+    color: #e7d7b9;
+    font: clamp(43px, 6vw, 72px)/.94 "IM Fell English SC", Georgia, serif;
+    font-weight: 400;
+    text-shadow: 4px 4px 0 #08090d;
+}
+.login-content h1 em { color: #c18a66; font-style: normal; }
+.login-intro { max-width: 420px; margin: 22px auto 28px; color: #a69b8d; font-size: 12px; line-height: 1.8; }
+.skull-stage { position: relative; display: flex; flex-direction: column; align-items: center; min-height: 278px; }
+.skull-button {
+    position: relative;
+    display: block;
+    width: 196px;
+    height: 205px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    filter: drop-shadow(8px 9px 0 #07080c);
+}
+.skull-head {
+    position: absolute;
+    left: 19px;
+    top: 8px;
+    width: 158px;
+    height: 153px;
+    border: 7px solid #29272a;
+    border-radius: 47% 47% 39% 39%;
+    background: linear-gradient(135deg, #fff1d5 0%, #d4c6ad 56%, #958b7f 100%);
+    box-shadow: inset 8px 5px 0 rgba(255,255,255,.42), inset -9px -8px 0 rgba(57,51,49,.18), 0 0 0 3px #a49a8e;
+}
+.skull-brow { position: absolute; top: 8px; left: 22px; right: 22px; height: 14px; background: #e8ddc9; border-radius: 50%; }
+.skull-eye {
+    position: absolute;
+    top: 52px;
+    width: 49px;
+    height: 51px;
+    background: #101015;
+    border-radius: 48% 48% 45% 45%;
+    box-shadow: inset 5px 3px 0 #28272a;
+}
+.skull-eye-left { left: 12px; transform: rotate(7deg); }
+.skull-eye-right { right: 12px; transform: rotate(-7deg); }
+.skull-nose {
+    position: absolute;
+    z-index: 2;
+    left: 63px;
+    top: 99px;
+    width: 19px;
+    height: 23px;
+    background: #252127;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.skull-cheek { position: absolute; top: 108px; width: 30px; height: 22px; background: #e8dcc7; border-bottom: 4px solid #a49a8e; }
+.skull-cheek-left { left: 2px; transform: rotate(12deg); }
+.skull-cheek-right { right: 2px; transform: rotate(-12deg); }
+.skull-teeth {
+    position: absolute;
+    z-index: 3;
+    bottom: -5px;
+    left: 38px;
+    width: 68px;
+    height: 24px;
+    background: repeating-linear-gradient(90deg, #e8ddc8 0 13px, #7d746b 13px 16px);
+    border: 3px solid #29272a;
+    border-top: 0;
+}
+.skull-jaw {
+    position: absolute;
+    z-index: 4;
+    left: 43px;
+    top: 147px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 110px;
+    height: 47px;
+    padding: 0 8px;
+    border: 6px solid #29272a;
+    border-top: 5px solid #d4c6ad;
+    border-radius: 5px 5px 28px 28px;
+    background: linear-gradient(180deg, #eee2cb, #b4a998);
+    transform-origin: 50% 0;
+    transition: transform .42s cubic-bezier(.2,.8,.2,1);
+}
+.skull-jaw i { width: 13px; height: 19px; background: #eee3cf; border: 2px solid #6d625a; border-top: 0; }
+.skull-button.is-open .skull-jaw { transform: rotate(29deg) translate(15px, 14px); }
+.skull-button:hover .skull-head { filter: brightness(1.08); }
+.skull-hint { margin: 12px 0 0; color: #d58a53; font-size: 9px; letter-spacing: .08em; }
+.login-panel {
+    position: relative;
+    z-index: 6;
+    width: min(100%, 330px);
+    margin: 12px auto 0;
+    padding: 20px;
+    text-align: left;
+    border: 2px solid #725b4b;
+    background: rgba(20, 19, 24, .97);
+    box-shadow: 7px 7px 0 #08090d;
+    animation: panel-rise .3s ease-out both;
+}
+.login-panel::before { content: "✦  ACCESO DE VISITANTES  ✦"; display: block; margin-bottom: 15px; color: #c28b60; text-align: center; font-size: 9px; letter-spacing: .1em; }
+.login-panel form { display: grid; gap: 8px; }
+.login-panel label { margin-top: 5px; color: #c2b39b; font-size: 10px; }
+.login-panel input {
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 12px;
+    color: #eee1c8;
+    background: #101117;
+    border: 1px solid #5c4d43;
+    border-radius: 0;
+    outline-offset: 2px;
+}
+.login-panel input::placeholder { color: #746d66; }
+.enter-button {
+    min-height: 43px;
+    margin-top: 8px;
+    padding: 10px;
+    color: #1c1714;
+    background: linear-gradient(#e0b57a, #b7774d);
+    border: 2px solid #f2d5a4;
+    box-shadow: 3px 3px 0 #08090d;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 10px;
+    letter-spacing: .08em;
+}
+.enter-button span { float: right; font-size: 15px; }
+.enter-button:disabled { opacity: .65; cursor: wait; }
+.login-feedback { min-height: 16px; margin: 4px 0 0; color: #ef9d75; font-size: 10px; line-height: 1.5; }
+.login-shake { animation: shake .28s linear; }
+.login-footnote { margin-top: 30px; color: #726b66; font-size: 8px; }
+
+/* TRANSICIÓN */
+.portal-screen { display: grid; place-content: center; justify-items: center; gap: 28px; background: radial-gradient(ellipse, #3b2b31, #11131a 60%); color: #e3b477; text-align: center; font-size: 12px; letter-spacing: .08em; }
+.portal-ring { position: relative; width: 170px; height: 220px; border: 4px solid #9d6948; border-radius: 50%; box-shadow: 0 0 20px #e27d40, inset 0 0 35px #bd6849; animation: portal-pulse 1.3s ease-in-out infinite alternate; }
+.portal-ring span { position: absolute; inset: 12px; border: 2px solid rgba(255,190,115,.5); border-radius: 50%; transform: rotate(20deg); }
+.portal-ring span:nth-child(2) { inset: 25px; transform: rotate(-30deg); }
+.portal-ring span:nth-child(3) { inset: 39px; transform: rotate(65deg); }
+
+/* INTERFAZ DEL JUEGO */
+.mansion-screen { width: min(100%, 1600px); margin: 0 auto; padding: 0 24px 20px; background: #10131a; }
+.game-header { height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 15px; border-bottom: 1px solid #39333a; }
+.game-brand { display: flex; align-items: center; gap: 11px; }
+.brand-mark { color: #d99b61; font-size: 24px; }
+.game-brand div { display: grid; gap: 2px; }
+.game-brand strong { font: 17px "IM Fell English SC", Georgia, serif; letter-spacing: .08em; }
+.game-brand small { color: #9e8270; font-size: 8px; letter-spacing: .22em; }
+.location-tag { color: #a99d8c; font-size: 9px; letter-spacing: .12em; }
+.status-dot { display: inline-block; width: 7px; height: 7px; margin-right: 7px; background: #d18a50; border-radius: 50%; box-shadow: 0 0 9px #df9b51; }
+.quiet-button { padding: 8px 12px; color: #9e8d7a; background: transparent; border: 1px solid #51443c; font-size: 9px; cursor: pointer; }
+.quiet-button:hover { color: #f4c58a; border-color: #ba845e; }
+.game-message { min-height: 40px; display: flex; align-items: center; padding: 8px 13px; margin: 12px 0; color: #d7c7a9; background: #211e23; border-left: 3px solid #be8154; font-size: 11px; line-height: 1.5; }
+
+.scene-canvas {
+    position: relative;
+    height: clamp(650px, calc(100vh - 175px), 900px);
+    min-height: 650px;
+    overflow: hidden;
+    isolation: isolate;
+    border: 3px solid #4d4140;
+    background:
+        radial-gradient(ellipse at 52% 18%, rgba(93, 104, 110, .3), transparent 33%),
+        linear-gradient(180deg, #1b2833 0%, #20222a 52%, #26231f 100%);
+    box-shadow: inset 0 0 90px rgba(0,0,0,.72), 0 7px 0 #08090e;
+}
+.scene-canvas::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 0; right: 0; bottom: 0; height: 30%;
+    background: repeating-linear-gradient(0deg, rgba(30,31,29,.55) 0 3px, transparent 3px 9px), linear-gradient(180deg, #38332b, #17191a);
+    border-top: 4px solid #51443a;
+}
+.scene-canvas::after {
+    content: "";
+    position: absolute;
+    z-index: 20;
+    inset: 0;
+    pointer-events: none;
+    opacity: .13;
+    background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,.38) 4px);
+}
+.moon {
+    position: absolute;
+    z-index: 0;
+    top: 5%; left: 13%;
+    width: clamp(115px, 16vw, 205px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 34% 32%, #e6d9ae, #aaa991 67%, #777c78);
+    opacity: .83;
+    box-shadow: 0 0 55px rgba(201,205,180,.2), 0 0 0 12px rgba(177,186,178,.045);
+}
+.moon::before { content: ""; position: absolute; inset: 15% 25% 48% 18%; border-radius: 50%; background: rgba(93,103,99,.16); box-shadow: 42px 46px 0 -8px rgba(93,103,99,.2), -22px 80px 0 -12px rgba(93,103,99,.15); }
+.mist { position: absolute; z-index: 1; height: 44px; width: 50%; border-radius: 50%; background: rgba(174,183,171,.07); filter: blur(13px); }
+.mist-one { top: 39%; left: -9%; }
+.mist-two { top: 47%; right: -12%; }
+.distant-pines { position: absolute; z-index: 1; top: 24%; left: 0; right: 0; color: #101922; opacity: .8; font-size: clamp(45px, 7vw, 100px); letter-spacing: .06em; white-space: nowrap; overflow: hidden; }
+
+/* Árbol y cuervo */
+.dead-tree { position: absolute; z-index: 5; left: 1%; bottom: 14%; width: 19%; height: 65%; pointer-events: none; }
+.tree-trunk { position: absolute; left: 28%; bottom: -4%; width: 28px; height: 83%; background: linear-gradient(90deg, #211d1c 0 25%, #4b3932 26% 48%, #241f20 49%); transform: rotate(5deg); clip-path: polygon(35% 0, 80% 10%, 60% 46%, 100% 100%, 0 100%, 27% 51%, 10% 20%); }
+.tree-branch { position: absolute; display: block; height: 12px; background: #322626; transform-origin: left center; }
+.branch-one { top: 24%; left: 34%; width: 70%; transform: rotate(-36deg); }
+.branch-two { top: 39%; left: 34%; width: 78%; transform: rotate(-7deg); }
+.branch-three { top: 21%; left: 53%; width: 46%; transform: rotate(-70deg); }
+.crow {
+    position: absolute;
+    z-index: 3;
+    top: 16%; right: 7%;
+    width: 51px; height: 42px;
+    padding: 0;
+    color: #090d13;
+    background: transparent;
+    border: 0;
+    font-size: 34px;
+    cursor: pointer;
+    pointer-events: auto;
+    filter: drop-shadow(3px 3px 0 #06080b);
+    transition: transform 1s ease, opacity .9s ease;
+}
+.crow span { display: block; transform: rotate(-25deg); }
+.crow i { position: absolute; top: 0; right: 0; color: #bd8a50; font-size: 10px; font-style: normal; }
+.crow:hover { transform: translateY(-4px) rotate(-5deg); }
+.crow.fly-away { opacity: 0; transform: translate(180px, -190px) rotate(35deg) scale(.45); }
+
+.character-card {
+    position: absolute;
+    z-index: 8;
+    top: 3%; left: 2%;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 210px;
+    padding: 7px;
+    background: rgba(18,18,23,.86);
+    border: 1px solid #69594b;
+    box-shadow: 4px 4px 0 rgba(0,0,0,.45);
+}
+.character-card img { width: 42px; height: 54px; object-fit: cover; object-position: top; border: 1px solid #9b785a; }
+.character-card div { display: grid; gap: 4px; }
+.character-card small { color: #c38a60; font-size: 7px; letter-spacing: .12em; }
+.character-card strong { color: #e6d3b3; font: 15px "IM Fell English SC", Georgia, serif; }
+.character-card span { color: #9e9282; font-size: 8px; }
+
+/* FACHADA: tejado, habitaciones, balcones, puerta y ventanas. */
+.mansion {
+    position: absolute;
+    z-index: 3;
+    top: 9%; left: 50%;
+    width: min(72%, 900px);
+    height: 65%;
+    transform: translateX(-50%);
+    filter: drop-shadow(12px 12px 0 rgba(0,0,0,.55));
+}
+.roofline { position: absolute; top: 0; left: 0; width: 100%; height: 24%; }
+.roof-slope {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, #30282b 0 8px, #44363a 8px 11px), linear-gradient(90deg, #261f26, #5c4744 50%, #261f26);
+    clip-path: polygon(0 100%, 8% 23%, 25% 0, 75% 0, 92% 23%, 100% 100%);
+    border-bottom: 8px solid #756052;
+}
+.roof-slope::after { content: ""; position: absolute; left: 5%; right: 5%; top: 48%; height: 7px; background: #756052; box-shadow: 0 7px 0 #17171d; }
+.attic-window { position: absolute; z-index: 2; top: 20%; width: 17%; height: 60%; border: 6px solid #211d24; background: linear-gradient(135deg, #9a613d, #e4a65b 48%, #553a35); box-shadow: inset 0 0 0 4px #59403a, 0 0 18px rgba(255,153,72,.4); }
+.attic-left { left: 23%; transform: skew(-8deg); }
+.attic-right { right: 23%; transform: skew(8deg); }
+.attic-window span { position: absolute; left: 48%; top: 0; bottom: 0; width: 5px; background: #45343a; }
+.roof-spire { position: absolute; top: -7%; left: 48%; color: #b98761; font-size: 22px; text-shadow: 0 0 12px #f5b166; }
+.upper-story {
+    position: absolute;
+    top: 20%; left: 5%; width: 90%; height: 34%;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 7px solid #211e25;
+    background: #342d30;
+    box-shadow: inset 0 0 0 4px #64534a;
+}
+.upper-room { position: relative; overflow: hidden; border-right: 6px solid #1c1b22; background: linear-gradient(180deg, #393238, #282930); }
+.upper-room:nth-child(odd) { background: linear-gradient(180deg, #55413b, #302c30); }
+.upper-room::before { content: ""; position: absolute; left: 0; right: 0; top: 18%; height: 5px; background: rgba(191,143,92,.35); }
+.room-window { position: absolute; top: 13%; left: 21%; width: 57%; height: 48%; border: 5px solid #493c3b; background: linear-gradient(135deg, #e9a75e, #6e4c3e 80%); box-shadow: 0 0 24px rgba(238,144,61,.3); }
+.room-window::before { content: ""; position: absolute; left: 48%; top: 0; bottom: 0; width: 4px; background: #493b39; }
+.room-window::after { content: ""; position: absolute; left: 0; right: 0; top: 48%; height: 4px; background: #493b39; }
+.room-window i { position: absolute; inset: 7px; background: rgba(255,206,130,.16); }
+.room-silhouette { position: absolute; z-index: 2; bottom: 10%; left: 39%; color: #15171b; font-size: clamp(22px, 3.4vw, 45px); text-shadow: 3px 0 #92745a; }
+.room-ghost .room-silhouette { color: #d4c7ae; opacity: .65; }
+.upper-room small { position: absolute; right: 9px; bottom: 8px; color: #dfaa6d; font-size: 14px; }
+.balcony { position: absolute; z-index: 4; top: 51%; left: 1%; width: 98%; height: 7%; display: grid; place-items: center; color: #9d8c78; font-size: clamp(12px, 2vw, 20px); letter-spacing: .25em; background: linear-gradient(#5c4a42 0 18%, #26242a 18% 38%, #5c4a42 38% 55%, #30292a 55%); border-top: 5px solid #8a735e; border-bottom: 4px solid #1c1b20; text-shadow: 2px 2px #121318; }
+.ground-story {
+    position: absolute;
+    top: 57%; left: 0; width: 100%; height: 38%;
+    display: grid;
+    grid-template-columns: 1fr 1.25fr 1fr;
+    align-items: stretch;
+    padding: 14px 5% 0;
+    border: 8px solid #211e25;
+    background: repeating-linear-gradient(90deg, #51403b 0 13px, #493834 13px 27px, #332e31 27px 32px);
+    box-shadow: inset 0 0 0 4px #735c4b;
+}
+.facade-window {
+    position: relative;
+    align-self: center;
+    width: 72%; height: 74%;
+    margin: auto;
+    border: 9px solid #30272c;
+    background: linear-gradient(135deg, #ffcf80, #bc7447 70%, #61423b);
+    box-shadow: 0 0 26px rgba(238,146,68,.37), inset 0 0 0 4px #e3a15f;
+}
+.facade-window::before, .facade-window::after { content: ""; position: absolute; background: #583b35; }
+.facade-window::before { left: 47%; top: 0; bottom: 0; width: 7px; }
+.facade-window::after { top: 48%; left: 0; right: 0; height: 7px; }
+.facade-window span { position: absolute; inset: 8px; background: rgba(255,220,147,.18); }
+.front-door {
+    position: relative;
+    align-self: end;
+    justify-self: center;
+    width: 84%; height: 91%;
+    padding: 0;
+    color: #d2aa76;
+    background: linear-gradient(90deg, #281f24, #654239 45%, #3a292b);
+    border: 9px solid #241f25;
+    border-bottom: 0;
+    box-shadow: inset 0 0 0 4px #98704c, inset 0 0 0 8px #392b2c;
+    cursor: pointer;
+}
+.front-door::before { content: ""; position: absolute; left: 50%; top: 3%; bottom: 0; width: 4px; background: #8c6849; }
+.front-door::after { content: ""; position: absolute; left: 14%; right: 14%; top: 12%; height: 36%; border: 3px solid #9b7655; background: linear-gradient(135deg, rgba(255,169,81,.7), rgba(116,66,48,.3)); }
+.door-knocker { position: absolute; z-index: 2; top: 57%; left: 53%; font-size: 19px; }
+.door-label { position: absolute; z-index: 2; bottom: 12%; left: 0; right: 0; font-size: 8px; letter-spacing: .15em; }
+.front-door:hover { filter: brightness(1.25); }
+.front-door.is-unlocked { box-shadow: inset 0 0 0 4px #d4a768, 0 0 30px #c67b3f; }
+.facade-column { position: absolute; bottom: 0; width: 13px; height: 100%; background: linear-gradient(90deg, #2b2629, #92745b, #382b2b); border-top: 5px solid #a18869; }
+.column-left { left: 5%; }
+.column-right { right: 5%; }
+.steps { position: absolute; bottom: -8%; left: -3%; right: -3%; height: 9%; background: repeating-linear-gradient(180deg, #4e4140 0 8px, #26252b 8px 11px); border: 4px solid #201d24; box-shadow: 0 7px 0 #08090d; }
+
+.fairy-lights { position: absolute; z-index: 5; top: 67%; color: #ffba67; font-size: 15px; letter-spacing: .25em; text-shadow: 0 0 9px #ff9d45; white-space: nowrap; }
+.lights-left { left: 11%; transform: rotate(8deg); }
+.lights-right { right: 8%; transform: rotate(-7deg); }
+
+/* Banda, esqueletos y criaturas bailarinas. */
+.party-zone {
+    position: absolute;
+    z-index: 9;
+    left: 25%; bottom: 1%;
+    width: 56%; height: 30%;
+    padding: 0;
+    color: inherit;
+    background: linear-gradient(180deg, transparent 15%, rgba(24,22,23,.28));
+    border: 0;
+    cursor: pointer;
+}
+.party-zone:hover { background: linear-gradient(180deg, transparent, rgba(211,126,69,.12)); }
+.party-sign { position: absolute; top: 0; left: 50%; transform: translateX(-50%); padding: 5px 9px; color: #e1b779; background: rgba(22,19,22,.85); border: 1px solid #79604a; font-size: 8px; letter-spacing: .13em; white-space: nowrap; }
+.band-member, .dancer { position: absolute; display: inline-block; font-family: sans-serif; filter: drop-shadow(3px 4px 0 rgba(0,0,0,.55)); }
+.band-member { bottom: 26%; font-size: clamp(25px, 3vw, 42px); animation: charlie-brown 1.15s steps(2,end) infinite; }
+.band-member b { display: block; font-weight: normal; }
+.band-member i { position: absolute; right: -17px; top: 30%; font-size: .58em; font-style: normal; }
+.musician-one { left: 13%; animation-delay: -.3s; }
+.musician-two { left: 37%; bottom: 31%; animation-delay: -.7s; }
+.musician-three { left: 65%; animation-delay: -.1s; }
+.dancer { bottom: 18%; font-size: clamp(28px, 3.5vw, 47px); animation: charlie-brown .9s steps(2,end) infinite; }
+.ghost-dancer { left: 2%; animation-delay: -.2s; }
+.monster-dancer { left: 25%; bottom: 10%; animation-delay: -.55s; }
+.witch-dancer { left: 49%; animation-delay: -.35s; }
+.pumpkin-dancer { left: 76%; bottom: 8%; animation-delay: -.65s; }
+.bat-dancer { right: 1%; bottom: 33%; font-size: 31px; animation-delay: -.45s; }
+.party-prompt { position: absolute; bottom: 2%; left: 50%; transform: translateX(-50%); color: #d5a16e; font-size: 8px; letter-spacing: .08em; white-space: nowrap; text-shadow: 2px 2px #111; }
+.party-hyped .dancer, .party-hyped .band-member { animation-duration: .45s; }
+
+.pumpkin {
+    position: absolute;
+    z-index: 10;
+    right: 17%; bottom: 6%;
+    width: 45px; height: 38px;
+    color: #3b2418;
+    background: radial-gradient(ellipse, #f79b40 0 48%, #b95b2e 70%);
+    border: 3px solid #623b29;
+    border-radius: 45% 45% 42% 42%;
+    box-shadow: inset 7px 0 0 rgba(255,205,105,.2), 0 5px 0 #161315;
+    cursor: pointer;
+}
+.pumpkin::before { content: ""; position: absolute; left: 19px; top: -11px; width: 7px; height: 12px; background: #53603a; transform: rotate(12deg); }
+.pumpkin span { font-size: 18px; }
+.pumpkin.is-lit { box-shadow: 0 0 28px 10px rgba(255,143,53,.48), inset 7px 0 0 rgba(255,205,105,.2); }
+.pumpkin.is-lit span { color: #fff0a4; text-shadow: 0 0 8px #fff; }
+
+.stone-area { position: absolute; z-index: 11; left: 7%; bottom: 7%; width: 100px; height: 65px; }
+.stone {
+    position: absolute;
+    bottom: 0; left: 15px;
+    width: 67px; height: 35px;
+    color: #8f8270;
+    background: linear-gradient(145deg, #77736b, #393b3d 70%);
+    border: 3px solid #25272a;
+    border-radius: 47% 50% 13% 12%;
+    box-shadow: 4px 5px 0 #121416;
+    font-size: 7px;
+    cursor: pointer;
+    transition: transform .3s ease;
+}
+.stone.is-lifted { transform: translate(-8px, -24px) rotate(-16deg); }
+.key-object {
+    position: absolute;
+    z-index: 2;
+    left: 32px; bottom: 23px;
+    width: 38px; height: 38px;
+    color: #ffd078;
+    background: transparent;
+    border: 0;
+    font-size: 34px;
+    text-shadow: 0 0 12px #f5a43a;
+    transform: rotate(-28deg);
+    cursor: pointer;
+    animation: key-glow 1s ease-in-out infinite alternate;
+}
+.key-object:hover { transform: rotate(-28deg) scale(1.18); }
+
+/* Cuadro de diálogo integrado en el escenario. */
+.dialogue-box {
+    position: absolute;
+    z-index: 30;
+    left: 50%; bottom: 18%;
+    display: grid;
+    grid-template-columns: 34px 1fr 25px;
+    align-items: center;
+    gap: 12px;
+    width: min(540px, 78%);
+    min-height: 112px;
+    padding: 15px 17px;
+    color: #e9dbc0;
+    background: rgba(18,17,22,.97);
+    border: 2px solid #9a7656;
+    box-shadow: 8px 8px 0 rgba(0,0,0,.65), inset 0 0 0 3px #29252a;
+    transform: translateX(-50%);
+    animation: panel-rise .2s ease-out both;
+}
+.dialogue-ornament { color: #d69b5f; font-size: 25px; text-align: center; }
+.dialogue-copy small { color: #bf8a60; font-size: 8px; letter-spacing: .16em; }
+.dialogue-copy h2 { margin: 5px 0 4px; color: #f0d7ac; font: 21px "IM Fell English SC", Georgia, serif; font-weight: 400; }
+.dialogue-copy p { margin: 0; color: #c6baa7; font-size: 11px; line-height: 1.65; }
+#dialogue-close { align-self: start; padding: 0; color: #b99a7d; background: transparent; border: 0; font-size: 23px; cursor: pointer; }
+#dialogue-close:hover { color: #ffcf91; }
+
+/* INVENTARIO */
+.game-footer { min-height: 70px; display: flex; align-items: center; gap: 8px; padding: 10px 4px 0; }
+.inventory-label { display: grid; gap: 3px; min-width: 100px; }
+.inventory-label small { color: #a17d61; font-size: 7px; letter-spacing: .17em; }
+.inventory-label strong { color: #dfb47d; font: 15px "IM Fell English SC", Georgia, serif; letter-spacing: .08em; }
+.inventory-slot { position: relative; display: grid; place-items: center; width: 55px; height: 48px; background: #201f24; border: 2px solid #645346; box-shadow: inset 0 0 0 2px #11131a; }
+.slot-number { position: absolute; top: 3px; left: 5px; color: #8f8172; font-size: 8px; }
+.inventory-item { color: #f4be61; font-size: 28px; transform: rotate(-30deg); text-shadow: 0 0 10px #e5a447; }
+.slot-filled { border-color: #c18a54; box-shadow: inset 0 0 0 2px #4b3527, 0 0 12px rgba(219,151,75,.2); }
+.inventory-hint { margin-left: auto; color: #7e776e; font-size: 9px; text-align: right; }
+
+@keyframes panel-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+@keyframes portal-pulse { from { transform: scale(.96); filter: brightness(.8); } to { transform: scale(1.04); filter: brightness(1.35); } }
+@keyframes charlie-brown { 0%,100% { transform: translateY(0) rotate(-8deg); } 25% { transform: translateY(-8px) rotate(7deg); } 50% { transform: translateY(1px) rotate(10deg); } 75% { transform: translateY(-5px) rotate(-9deg); } }
+@keyframes key-glow { from { filter: brightness(.9); } to { filter: brightness(1.45) drop-shadow(0 0 7px #f1a342); } }
+
+@media (max-width: 760px) {
+    .login-screen { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 34px 20px 55px; }
+    .portrait-card { width: 150px; }
+    .portrait-card img { aspect-ratio: 266 / 300; }
+    .portrait-caption { padding: 8px; }
+    .portrait-caption strong { font-size: 16px; }
+    .portrait-caption span:last-child { font-size: 8px; }
+    .login-content h1 { font-size: clamp(40px, 12vw, 58px); }
+    .login-intro { margin: 14px auto 18px; font-size: 11px; }
+    .skull-stage { min-height: 275px; }
+    .login-footnote { margin-top: 12px; }
+    .mansion-screen { padding: 0 10px 15px; }
+    .game-header { height: 58px; }
+    .game-brand strong { font-size: 14px; }
+    .game-brand small { font-size: 7px; }
+    .location-tag { display: none; }
+    .game-message { font-size: 9px; }
+    .scene-canvas { height: 690px; min-height: 690px; }
+    .mansion { top: 15%; width: 96%; height: 52%; }
+    .character-card { top: 2%; left: 2%; width: 155px; }
+    .character-card img { width: 32px; height: 42px; }
+    .character-card strong { font-size: 12px; }
+    .character-card span { font-size: 7px; }
+    .dead-tree { left: -5%; width: 22%; height: 62%; }
+    .party-zone { left: 12%; width: 76%; height: 25%; }
+    .fairy-lights { font-size: 9px; }
+    .lights-left { left: 3%; }
+    .lights-right { right: 1%; }
+    .stone-area { left: 1%; bottom: 5%; transform: scale(.85); transform-origin: bottom left; }
+    .pumpkin { right: 5%; bottom: 5%; transform: scale(.85); }
+    .dialogue-box { bottom: 24%; width: 92%; grid-template-columns: 22px 1fr 20px; gap: 8px; padding: 11px; }
+    .dialogue-copy h2 { font-size: 18px; }
+    .dialogue-copy p { font-size: 9px; }
+    .game-footer { flex-wrap: wrap; }
+    .inventory-label { min-width: 75px; }
+    .inventory-label strong { font-size: 12px; }
+    .inventory-slot { width: 44px; height: 42px; }
+    .inventory-hint { flex-basis: 100%; margin: 2px 0 0; text-align: left; }
+}
+
+@media (max-width: 420px) {
+    .scene-canvas { height: 650px; min-height: 650px; }
+    .mansion { top: 18%; height: 48%; width: 99%; }
+    .upper-story { border-width: 4px; }
+    .ground-story { border-width: 5px; padding-left: 3%; padding-right: 3%; }
+    .party-zone { left: 8%; width: 84%; }
+    .party-sign { font-size: 6px; }
+    .character-card { width: 135px; }
+    .character-card span { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
+
+
+/* ================================================================
+   DIRECCIÓN ARTÍSTICA PIXEL ART — actualización de la mansión
+   El retrato pictórico del protagonista se conserva sin filtros nuevos.
+   ================================================================ */
+:root {
+    --ink: #090d18;
+    --night: #111a2b;
+    --panel: #171725;
+    --bone: #e8d9bd;
+    --muted-bone: #ad9d82;
+    --rust: #a85d42;
+    --amber: #ffb85e;
+    --line: #5d5260;
+    --pixel-shadow: 6px 6px 0 #070912;
+}
+
+body {
+    background: #080d18;
+    font-family: "VT323", "Courier New", monospace;
+    letter-spacing: .02em;
+}
+button, input { font-family: inherit; }
+.login-screen {
+    background:
+        radial-gradient(ellipse at 76% 18%, rgba(87, 107, 133, .19), transparent 30%),
+        radial-gradient(ellipse at 12% 84%, rgba(151, 91, 58, .13), transparent 32%),
+        linear-gradient(135deg, #172033, #0b101d 65%, #171521);
+}
+.portrait-card {
+    border-color: #8b725c;
+    background: #211f28;
+    box-shadow: 8px 8px 0 #050711, inset 0 0 0 3px #0c101b;
+}
+.portrait-card img {
+    filter: none;
+    image-rendering: auto;
+}
+.portrait-caption { background: #111522; }
+.portrait-caption strong { font-family: "IM Fell English SC", Georgia, serif; }
+.login-content h1 { text-shadow: 4px 4px 0 #080a13, 0 0 22px rgba(239, 156, 83, .14); }
+.eyebrow, .caption-kicker, .login-footnote, .skull-hint,
+.login-panel::before, .login-panel label, .enter-button,
+.game-brand small, .location-tag, .quiet-button,
+.inventory-label small, .party-sign, .party-prompt,
+.interaction-hint, .door-hotspot-label {
+    font-family: "Silkscreen", "Courier New", monospace;
+}
+
+/* Escenario panorámico ilustrado: casa, luna, árboles, verja y patio. */
+.scene-canvas {
+    height: clamp(610px, calc(100vh - 175px), 900px);
+    min-height: 610px;
+    border: 4px solid #67566a;
+    background-color: #111a2b;
+    background-image:
+        linear-gradient(180deg, rgba(8, 12, 23, .03) 0%, rgba(8, 12, 23, .06) 48%, rgba(8, 10, 18, .28) 100%),
+        url("assets/escenario-exterior-pixel.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 90px rgba(0,0,0,.48), 0 8px 0 #050711;
+    image-rendering: pixelated;
+}
+.scene-canvas::before {
+    inset: 0;
+    height: auto;
+    border: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 58%, rgba(7, 10, 17, .24) 100%);
+}
+.scene-canvas::after {
+    opacity: .075;
+    background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,.5) 4px);
+}
+.scene-vignette {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 50% 47%, transparent 45%, rgba(5,8,16,.36) 100%);
+}
+.pixel-stars {
+    position: absolute;
+    z-index: 2;
+    top: 4%;
+    left: 43%;
+    color: rgba(236, 220, 188, .7);
+    font-size: 15px;
+    letter-spacing: .6em;
+    text-shadow: 0 0 8px #d6c6a0;
+    pointer-events: none;
+}
+.game-header { border-color: #34374a; }
+.game-brand strong { color: #f1dfbd; }
+.brand-mark { color: #ffbd70; text-shadow: 0 0 12px #d47e43; }
+.game-message {
+    color: #e6d8bf;
+    background: #171b2b;
+    border: 1px solid #49445a;
+    border-left: 4px solid #d18a50;
+    box-shadow: 4px 4px 0 rgba(0,0,0,.25);
+    font-size: 16px;
+}
+
+/* Retrato miniatura: misma ilustración, sin convertirla en pixel art. */
+.character-card {
+    top: 3%; left: 2%;
+    width: 195px;
+    border: 2px solid #8b6c58;
+    background: rgba(12, 15, 27, .91);
+    box-shadow: 5px 5px 0 rgba(0,0,0,.5);
+}
+.character-card img { border-color: #c08b5f; image-rendering: auto; }
+.character-card strong { font-family: "IM Fell English SC", Georgia, serif; }
+.character-card small { font-family: "Silkscreen", monospace; }
+
+/* Cuervo pixelado posicionado sobre el árbol que ya aparece en el fondo. */
+.crow {
+    position: absolute;
+    z-index: 12;
+    top: 27%; left: 21%;
+    width: clamp(54px, 6vw, 90px);
+    height: clamp(54px, 6vw, 90px);
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    filter: drop-shadow(4px 5px 0 rgba(0,0,0,.55));
+    transition: transform .9s ease, opacity .8s ease;
+}
+.crow img { display: block; width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
+.crow:hover { transform: translateY(-6px) rotate(-5deg); }
+.crow.fly-away { opacity: 0; transform: translate(190px, -210px) rotate(32deg) scale(.35); }
+.interaction-hint {
+    position: absolute;
+    left: 50%; bottom: -14px;
+    padding: 3px 5px;
+    color: #f0c18a;
+    background: rgba(10, 12, 21, .9);
+    border: 1px solid #725642;
+    font-size: 7px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: opacity .2s ease;
+}
+.crow:hover .interaction-hint { opacity: 1; }
+
+/* Hotspot transparente alineado con la puerta de la ilustración de fondo. */
+.front-door {
+    position: absolute;
+    z-index: 10;
+    left: 46.6%; top: 49.5%;
+    width: 7.2%; height: 18.8%;
+    padding: 0;
+    color: #f0ca91;
+    border: 2px solid transparent;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+}
+.front-door:hover, .front-door:focus-visible {
+    border-color: rgba(255, 183, 93, .85);
+    background: rgba(255, 166, 71, .10);
+    box-shadow: 0 0 25px rgba(255, 153, 65, .3);
+}
+.door-hotspot-label {
+    position: absolute;
+    left: 50%; bottom: -25px;
+    padding: 4px 6px;
+    color: #ffe0aa;
+    background: rgba(10, 12, 20, .9);
+    border: 1px solid #9b714c;
+    font-size: 7px;
+    letter-spacing: .08em;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-50%);
+}
+.front-door:hover .door-hotspot-label, .front-door.is-unlocked .door-hotspot-label { opacity: 1; }
+.front-door.is-unlocked { border-color: #ffc477; box-shadow: 0 0 32px rgba(255, 173, 77, .7); }
+
+/* Fiesta compuesta por sprites PNG independientes y animación de baile. */
+.party-zone {
+    z-index: 11;
+    left: 27%; bottom: 2%;
+    width: 54%; height: 32%;
+    overflow: visible;
+    background: linear-gradient(180deg, transparent 10%, rgba(8, 9, 16, .25));
+    border: 0;
+}
+.party-zone:hover { background: linear-gradient(180deg, transparent, rgba(238, 145, 71, .12)); }
+.party-sign {
+    top: -7%;
+    padding: 7px 12px;
+    color: #f7cb8f;
+    background: rgba(13, 14, 24, .9);
+    border: 2px solid #8d6b51;
+    box-shadow: 4px 4px 0 rgba(0,0,0,.45);
+    font-size: 8px;
+    text-shadow: 2px 2px #231c21;
+}
+.band-member, .dancer {
+    position: absolute;
+    display: block;
+    width: clamp(66px, 7.8vw, 112px);
+    height: clamp(104px, 15vw, 190px);
+    filter: drop-shadow(4px 5px 0 rgba(0,0,0,.55));
+    animation: sprite-dance 1.15s steps(2, end) infinite;
+    transform-origin: 50% 90%;
+    pointer-events: none;
+}
+.band-member img, .dancer img {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+.musician-one { left: 5%; bottom: 39%; animation-delay: -.25s; }
+.musician-two { left: 25%; bottom: 39%; animation-delay: -.65s; }
+.musician-three { left: 46%; bottom: 39%; animation-delay: -.1s; }
+.ghost-dancer { left: 1%; bottom: 0%; width: clamp(58px, 6.2vw, 92px); height: clamp(95px, 13vw, 160px); animation-delay: -.4s; }
+.monster-dancer { left: 24%; bottom: -1%; animation-delay: -.7s; }
+.witch-dancer { left: 51%; bottom: -1%; animation-delay: -.3s; }
+.pumpkin-dancer { right: 0%; bottom: -1%; animation-delay: -.8s; }
+.party-prompt {
+    left: 50%; bottom: 0;
+    padding: 5px 8px;
+    color: #f0c18a;
+    background: rgba(10, 11, 18, .86);
+    border: 1px solid rgba(151, 111, 75, .8);
+    font-size: 7px;
+    text-shadow: 1px 1px #111;
+}
+.party-hyped .band-member, .party-hyped .dancer { animation-duration: .48s; }
+@keyframes sprite-dance {
+    0%,100% { transform: translateY(0) rotate(-5deg); }
+    25% { transform: translateY(-9px) rotate(6deg); }
+    50% { transform: translateY(1px) rotate(8deg); }
+    75% { transform: translateY(-6px) rotate(-8deg); }
+}
+
+/* Objetos interactivos integrados en el mismo lenguaje visual. */
+.pumpkin {
+    right: 8%; bottom: 7%;
+    width: 48px; height: 40px;
+    border: 3px solid #4d2b23;
+    border-radius: 8px 8px 10px 10px;
+    background: repeating-linear-gradient(90deg, #9f4c29 0 7px, #d97935 7px 14px, #b85b2c 14px 20px);
+    box-shadow: inset 0 0 0 3px rgba(255,184,85,.18), 4px 5px 0 #101018;
+}
+.pumpkin::before { left: 19px; top: -11px; width: 8px; height: 12px; background: #62713d; border: 2px solid #263725; transform: none; }
+.pumpkin-face { color: #24151a; font-size: 11px; text-shadow: 0 9px 0 #24151a; }
+.pumpkin.is-lit { box-shadow: 0 0 30px 11px rgba(255,143,53,.48), inset 0 0 0 3px rgba(255,220,120,.4), 4px 5px 0 #101018; }
+.stone-area { left: 13%; bottom: 8%; width: 90px; height: 72px; }
+.stone {
+    left: 8px; bottom: 0;
+    width: 72px; height: 43px;
+    border: 3px solid #252938;
+    border-radius: 22px 22px 5px 5px;
+    background: repeating-linear-gradient(0deg, #3b4250 0 6px, #505867 6px 9px);
+    box-shadow: 4px 5px 0 #0b0d15, inset 0 0 0 3px #657080;
+    color: #c2b79e;
+    font-family: "Silkscreen", monospace;
+}
+.stone::after { content: "RIP"; position: absolute; inset: 9px 0 auto; color: #9da2a2; font-size: 7px; }
+.stone.is-lifted { transform: translate(-12px, -25px) rotate(-17deg); }
+.key-object {
+    left: 28px; bottom: 23px;
+    z-index: 3;
+    width: 43px; height: 43px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    filter: drop-shadow(0 0 9px #ffb744);
+}
+.key-pixel {
+    position: relative;
+    display: block;
+    width: 32px; height: 32px;
+    transform: rotate(-35deg);
+}
+.key-pixel::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0;
+    width: 12px; height: 12px;
+    border: 4px solid #ffc15d;
+    box-shadow: inset 0 0 0 2px #8c5129;
+}
+.key-pixel::after {
+    content: "";
+    position: absolute;
+    left: 13px; top: 14px;
+    width: 6px; height: 20px;
+    background: #e8a847;
+    box-shadow: 5px 12px 0 -1px #e8a847, 0 0 0 2px #73452a;
+}
+.inventory-item { display: grid; place-items: center; width: 32px; height: 32px; }
+.inventory-item .key-pixel { transform: rotate(-35deg) scale(.72); }
+
+/* Diálogo y barra inferior con bordes pixelados y contraste más claro. */
+.dialogue-box {
+    z-index: 30;
+    bottom: 16%;
+    width: min(560px, 78%);
+    border: 3px solid #a27b58;
+    background: rgba(12, 13, 22, .97);
+    box-shadow: 7px 7px 0 rgba(0,0,0,.68), inset 0 0 0 3px #29263a;
+}
+.dialogue-copy h2 { font-family: "IM Fell English SC", Georgia, serif; }
+.dialogue-copy p { font-size: 16px; line-height: 1.35; }
+.dialogue-copy small { font-family: "Silkscreen", monospace; }
+.game-footer {
+    min-height: 76px;
+    padding: 10px 12px 0;
+    background: linear-gradient(180deg, #111522, #0b0f1a);
+    border: 2px solid #464052;
+    border-top: 0;
+}
+.inventory-label strong { font-family: "Silkscreen", monospace; font-size: 11px; }
+.inventory-slot {
+    background: #161a28;
+    border: 2px solid #76604b;
+    box-shadow: inset 0 0 0 2px #090d17;
+}
+.inventory-slot.slot-filled { border-color: #e0a253; box-shadow: 0 0 15px rgba(231,165,82,.25), inset 0 0 0 2px #563b2b; }
+.inventory-hint { font-size: 14px; }
+
+@media (max-width: 760px) {
+    .scene-canvas { height: 680px; min-height: 680px; background-position: 50% center; }
+    .character-card { top: 2%; left: 2%; width: 150px; }
+    .crow { top: 29%; left: 17%; width: 58px; height: 58px; }
+    .front-door { left: 45%; top: 49%; width: 12%; height: 18%; }
+    .party-zone { left: 13%; bottom: 3%; width: 78%; height: 29%; }
+    .band-member, .dancer { width: 68px; height: 108px; }
+    .musician-one { left: 2%; bottom: 42%; }
+    .musician-two { left: 29%; bottom: 42%; }
+    .musician-three { left: 57%; bottom: 42%; }
+    .ghost-dancer { left: 0; bottom: 0; }
+    .monster-dancer { left: 22%; bottom: -2%; }
+    .witch-dancer { left: 49%; bottom: -2%; }
+    .pumpkin-dancer { right: -2%; bottom: -2%; }
+    .party-sign { font-size: 6px; }
+    .stone-area { left: 7%; bottom: 6%; transform: scale(.8); transform-origin: bottom left; }
+    .pumpkin { right: 4%; bottom: 5%; transform: scale(.82); }
+    .dialogue-box { bottom: 28%; width: 93%; }
+    .dialogue-copy p { font-size: 14px; }
+    .pixel-stars { display: none; }
+}
+@media (max-width: 420px) {
+    .scene-canvas { height: 640px; min-height: 640px; background-position: 48% center; }
+    .character-card { width: 132px; }
+    .character-card span { display: none; }
+    .party-zone { left: 8%; width: 85%; }
+    .band-member, .dancer { width: 58px; height: 94px; }
+    .party-prompt { font-size: 6px; }
+}
+
+
+/* AJUSTES FINOS DEL JARDÍN: percha, calabaza y buzón. */
+.crow {
+    top: 18.5%;
+    left: 15.8%;
+    width: clamp(60px, 5.6vw, 80px);
+    height: clamp(60px, 5.6vw, 80px);
+    transform: rotate(-9deg);
+    transform-origin: 50% 82%;
+}
+.crow:hover { transform: translateY(-5px) rotate(-4deg); }
+.crow.fly-away { transform: translate(190px, -210px) rotate(32deg) scale(.35); }
+
+/* Calabaza tallada: sustituye la forma CSS plana por un sprite pixelado propio. */
+.pumpkin {
+    z-index: 13;
+    right: 14.5%;
+    bottom: 2.2%;
+    width: 70px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    filter: drop-shadow(4px 5px 0 rgba(0,0,0,.55));
+    transition: filter .2s ease, transform .2s ease;
+}
+.pumpkin img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+.pumpkin::before { content: none; }
+.pumpkin .interaction-hint { bottom: -12px; }
+.pumpkin:hover { transform: translateY(-3px); filter: drop-shadow(0 0 10px rgba(255,159,66,.55)); }
+.pumpkin.is-lit {
+    filter: drop-shadow(0 0 13px rgba(255,154,55,.9)) drop-shadow(4px 5px 0 rgba(0,0,0,.55));
+}
+.pumpkin.is-lit img { filter: brightness(1.2) saturate(1.15); }
+.pumpkin:hover .interaction-hint, .mailbox:hover .interaction-hint { opacity: 1; }
+
+/* Buzón victoriano junto a la verja derecha, con bandera roja y base de hierro. */
+.mailbox {
+    position: absolute;
+    z-index: 13;
+    right: 6%;
+    bottom: 1.8%;
+    width: 56px;
+    height: 90px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    filter: drop-shadow(4px 5px 0 rgba(0,0,0,.55));
+    transition: transform .2s ease, filter .2s ease;
+}
+.mailbox img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+.mailbox .interaction-hint { bottom: -9px; }
+.mailbox:hover { transform: translateY(-3px); filter: drop-shadow(0 0 9px rgba(220,157,99,.45)); }
+.mailbox.has-been-checked::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: -3px;
+    width: 13px;
+    height: 10px;
+    background: #ead7ae;
+    border: 2px solid #6b5042;
+    box-shadow: 2px 2px 0 rgba(0,0,0,.5);
+    transform: rotate(12deg);
+    animation: letter-pop .28s steps(3,end);
+}
+@keyframes letter-pop { from { opacity: 0; transform: translateY(8px) rotate(12deg) scale(.5); } to { opacity: 1; transform: translateY(0) rotate(12deg) scale(1); } }
+
+@media (max-width: 760px) {
+    .scene-canvas { background-position: 10% center; }
+    .crow { top: 14%; left: 29%; width: 58px; height: 58px; }
+    .pumpkin { right: 17%; bottom: 1.8%; width: 62px; height: 57px; transform: none; }
+    .mailbox { right: 5%; bottom: 1.4%; width: 50px; height: 82px; }
+}
+@media (max-width: 420px) {
+    .crow { top: 13%; left: 51%; width: 52px; height: 52px; }
+    .pumpkin { right: 18%; bottom: 1.5%; width: 55px; height: 50px; }
+    .mailbox { right: 4%; bottom: 1.2%; width: 44px; height: 72px; }
+}
+
+/* VIDA DEL JARDÍN: NPCs independientes, piedra camuflada y ambiente sutil. */
+.skull-hint { font-size: 0; }
+.skull-hint::after {
+    content: "La mandíbula guarda un secreto.";
+    font: 10px "IM Fell English SC", Georgia, serif;
+    letter-spacing: .04em;
+    color: #b28b6c;
+}
+
+/* No mostrar etiquetas que expliquen dónde clicar: el escenario debe hablar por sí solo. */
+.interaction-hint, .party-prompt, .door-hotspot-label { display: none !important; }
+.front-door:hover, .front-door:focus-visible { border-color: transparent; background: transparent; box-shadow: none; }
+.front-door.is-unlocked { border-color: rgba(255,196,119,.45); box-shadow: 0 0 28px rgba(255,173,77,.3); }
+
+.party-zone {
+    background: transparent;
+    border: 0;
+    cursor: default;
+}
+.party-zone:hover { background: transparent; }
+.npc {
+    position: absolute;
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    cursor: pointer;
+    pointer-events: auto;
+    transform-origin: 50% 88%;
+    transition: filter .16s ease;
+}
+.band-member.npc, .dancer.npc { pointer-events: auto; }
+.npc img { pointer-events: none; }
+.npc:hover, .npc:focus-visible {
+    z-index: 4;
+    filter: drop-shadow(0 0 8px rgba(255,196,119,.75)) brightness(1.12);
+    outline: none;
+}
+.npc:focus-visible { filter: drop-shadow(0 0 10px #ffd18f) brightness(1.15); }
+.npc.is-speaking {
+    z-index: 5;
+    filter: drop-shadow(0 0 12px rgba(255,188,111,.8)) brightness(1.16);
+}
+.npc.is-speaking::after {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: #ffd18c;
+    box-shadow: -7px 0 #ffd18c, 7px 0 #ffd18c, 0 -7px #ffd18c;
+    transform: translateX(-50%);
+    animation: npc-thought .8s steps(2, end) infinite;
+}
+@keyframes npc-thought { 50% { opacity: .25; transform: translate(-50%, -4px); } }
+
+/* La piedra ya no parece una lápida: es un pequeño montón camuflado en la maleza. */
+.stone-area {
+    z-index: 9;
+    left: 17.5%;
+    bottom: 16.5%;
+    width: 104px;
+    height: 73px;
+    transform: none;
+    pointer-events: none;
+}
+.stone-area .stone, .stone-area .key-object { pointer-events: auto; }
+.stone {
+    z-index: 2;
+    left: 20px;
+    bottom: 4px;
+    width: 65px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    clip-path: polygon(7% 48%, 20% 20%, 38% 11%, 49% 0, 72% 15%, 91% 38%, 100% 85%, 82% 100%, 13% 100%, 0 78%);
+    background: linear-gradient(180deg, #70716b 0 18%, #4c514e 19% 48%, #333c3c 49% 100%);
+    box-shadow: none;
+    filter: drop-shadow(3px 4px 0 #10151a);
+    cursor: pointer;
+    transition: transform .28s steps(4, end), filter .2s ease;
+}
+.stone::before {
+    content: "";
+    position: absolute;
+    inset: 4px 9px 13px 13px;
+    background: repeating-linear-gradient(90deg, #68736a 0 5px, #4e5b50 5px 8px, transparent 8px 13px);
+    clip-path: polygon(0 35%, 18% 0, 70% 12%, 100% 48%, 78% 100%, 9% 90%);
+    opacity: .65;
+}
+.stone::after { content: none; }
+.stone:hover { filter: brightness(1.18) drop-shadow(3px 4px 0 #10151a); }
+.stone.is-lifted { transform: translate(-8px, -21px) rotate(-13deg); }
+.stone-grass {
+    position: absolute;
+    z-index: 4;
+    display: block;
+    pointer-events: none;
+    background: #283d31;
+    box-shadow: 8px -5px 0 #354a35, 17px -1px 0 #314634, 27px -7px 0 #40533a, 39px -3px 0 #293d30, 52px -8px 0 #3a5037, 65px -2px 0 #2a3b30;
+}
+.grass-back { left: 14px; bottom: 19px; width: 8px; height: 13px; opacity: .92; }
+.grass-front { left: 11px; bottom: -1px; width: 9px; height: 12px; opacity: .98; box-shadow: 11px -2px 0 #344a32, 24px 0 0 #263b2d, 36px -3px 0 #3a5037, 48px 0 0 #263d2c, 61px -2px 0 #344a32, 73px 1px 0 #293d30; }
+.key-object {
+    z-index: 5;
+    left: 39px;
+    bottom: 25px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    filter: drop-shadow(0 0 5px #ffc45f);
+}
+.stone-area.is-open .grass-front { opacity: .35; }
+.stone-area.key-taken .stone { filter: brightness(.82) drop-shadow(3px 4px 0 #10151a); }
+
+/* Pequeñas luciérnagas y luces vivas en el jardín. */
+.fireflies {
+    position: absolute;
+    z-index: 7;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.fireflies i {
+    position: absolute;
+    left: 18%; top: 60%;
+    width: 4px; height: 4px;
+    background: #ffd18a;
+    box-shadow: 0 0 9px 3px rgba(255,187,104,.45);
+    animation: firefly-drift 8s ease-in-out infinite;
+}
+.fireflies i:nth-child(2) { left: 33%; top: 75%; animation-delay: -2.1s; }
+.fireflies i:nth-child(3) { left: 72%; top: 66%; animation-delay: -4.4s; }
+.fireflies i:nth-child(4) { left: 84%; top: 80%; animation-delay: -1.2s; }
+.fireflies i:nth-child(5) { left: 57%; top: 84%; animation-delay: -5.5s; }
+@keyframes firefly-drift {
+    0%, 100% { opacity: .15; transform: translate(0, 0) scale(.7); }
+    25% { opacity: .95; transform: translate(13px, -16px) scale(1.2); }
+    55% { opacity: .35; transform: translate(-9px, -29px) scale(.8); }
+    80% { opacity: .85; transform: translate(7px, -10px) scale(1); }
+}
+.fairy-lights { animation: lights-flicker 3.2s steps(2, end) infinite; }
+.lights-right { animation-delay: -1.4s; }
+@keyframes lights-flicker { 0%, 100% { opacity: .72; filter: brightness(.9); } 48% { opacity: 1; filter: brightness(1.35); } }
+
+.dialogue-box { z-index: 40; }
+@media (max-width: 760px) {
+    .stone-area { left: 12%; bottom: 17%; transform: scale(.88); transform-origin: bottom left; }
+    .party-zone { left: 13%; width: 78%; }
+    .npc.is-speaking { z-index: 6; }
+}
+@media (max-width: 420px) {
+    .stone-area { left: 9%; bottom: 18%; transform: scale(.76); transform-origin: bottom left; }
+    .party-zone { left: 8%; width: 85%; }
+    .party-sign { display: none; }
+}
+.party-zone { pointer-events: none; }
+.party-zone .npc { pointer-events: auto; }
+
+/* ============================================================
+   AJUSTE DE ESCALA Y DISTRIBUCIÓN: personajes más pequeños,
+   repartidos por el camino y la explanada del jardín.
+   ============================================================ */
+.party-zone {
+    left: 4%;
+    bottom: 2%;
+    width: 92%;
+    height: 43%;
+    z-index: 11;
+    overflow: visible;
+    pointer-events: none;
+    background: transparent;
+}
+.party-zone .party-sign { display: none; }
+.band-member, .dancer {
+    width: clamp(42px, 4.6vw, 66px);
+    height: clamp(70px, 8.2vw, 118px);
+    filter: drop-shadow(3px 4px 0 rgba(0,0,0,.58));
+    animation-duration: 1.4s;
+}
+.band-member img, .dancer img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+/* La banda queda algo más cerca de los escalones; los invitados ocupan el jardín. */
+.musician-one { left: 26%; bottom: 42%; }
+.musician-two { left: 44%; bottom: 44%; }
+.musician-three { left: 62%; bottom: 42%; }
+.ghost-dancer { left: 8%; bottom: 0; width: clamp(40px, 4.3vw, 62px); height: clamp(68px, 7.8vw, 110px); }
+.monster-dancer { left: 31%; bottom: -1%; }
+.witch-dancer { left: 57%; bottom: 0; }
+.pumpkin-dancer { right: 7%; bottom: -1%; }
+.npc { pointer-events: auto; }
+
+/* Ventanas: cada hotspot se alinea sobre un ventanal de la ilustración original. */
+.mansion-window-layer {
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    pointer-events: none;
+}
+.haunt-window {
+    position: absolute;
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    cursor: pointer;
+    overflow: hidden;
+    pointer-events: auto;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.haunt-window span {
+    position: absolute;
+    inset: 0;
+    display: block;
+    pointer-events: none;
+    background: transparent;
+}
+.haunt-window::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+    background: linear-gradient(90deg, rgba(5,8,17,.9), rgba(8,11,21,.96));
+    transition: opacity .22s steps(3, end);
+}
+.haunt-window::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: -38%;
+    bottom: -4%;
+    width: 34%;
+    height: 85%;
+    opacity: 0;
+    background: #070b16;
+    clip-path: polygon(34% 0, 68% 8%, 78% 24%, 100% 35%, 83% 43%, 93% 100%, 12% 100%, 22% 58%, 0 43%, 22% 31%, 21% 13%);
+}
+.haunt-window.is-dark::before { opacity: .94; }
+.haunt-window.shadow-pass::after {
+    opacity: .86;
+    animation: shadow-cross-window 1.85s steps(7, end) both;
+}
+.haunt-window:hover,
+.haunt-window:focus-visible {
+    outline: 1px solid rgba(255,193,111,.68);
+    outline-offset: 1px;
+    box-shadow: 0 0 12px rgba(255,166,74,.25);
+}
+@keyframes shadow-cross-window {
+    0% { left: -38%; transform: scaleX(.75); }
+    22% { transform: scaleX(1.1); }
+    100% { left: 112%; transform: scaleX(.85); }
+}
+
+/* Coordenadas relativas al fondo 1672 × 941. */
+.window-attic-left { left: 47.6%; top: 12.4%; width: 5.3%; height: 10.7%; }
+.window-attic-right { left: 71.6%; top: 13.1%; width: 5.4%; height: 10.2%; }
+.window-mid-left { left: 33.1%; top: 35.2%; width: 5.2%; height: 11.6%; }
+.window-mid-inner-left { left: 41.0%; top: 39.4%; width: 4.6%; height: 9.7%; }
+.window-mid-inner-right { left: 58.1%; top: 39.2%; width: 4.8%; height: 9.8%; }
+.window-mid-right { left: 70.2%; top: 34.6%; width: 6.6%; height: 12.3%; }
+.window-ground-left { left: 32.4%; top: 53.0%; width: 5.8%; height: 12.3%; }
+.window-ground-inner-left { left: 43.0%; top: 54.8%; width: 4.1%; height: 10.0%; }
+.window-ground-inner-right { left: 59.1%; top: 54.2%; width: 5.7%; height: 11.1%; }
+.window-ground-right { left: 72.0%; top: 52.8%; width: 6.4%; height: 12.2%; }
+
+/* El movimiento se aprecia también sin depender de filtros o imágenes nuevas. */
+@media (max-width: 760px) {
+    .party-zone { left: 2%; width: 96%; height: 40%; bottom: 2%; }
+    .band-member, .dancer { width: clamp(36px, 7.4vw, 54px); height: clamp(60px, 12vw, 86px); }
+    .musician-one { left: 23%; bottom: 42%; }
+    .musician-two { left: 44%; bottom: 44%; }
+    .musician-three { left: 65%; bottom: 42%; }
+    .ghost-dancer { left: 4%; width: 43px; height: 70px; }
+    .monster-dancer { left: 30%; }
+    .witch-dancer { left: 57%; }
+    .pumpkin-dancer { right: 4%; }
+    .haunt-window { transform: scale(1.05); }
+}
+@media (max-width: 420px) {
+    .party-zone { left: 1%; width: 98%; height: 37%; }
+    .band-member, .dancer { width: 38px; height: 63px; }
+    .musician-one { left: 22%; bottom: 44%; }
+    .musician-two { left: 44%; bottom: 46%; }
+    .musician-three { left: 66%; bottom: 44%; }
+    .ghost-dancer { left: 3%; width: 34px; height: 58px; }
+    .monster-dancer { left: 29%; }
+    .witch-dancer { left: 57%; }
+    .pumpkin-dancer { right: 3%; }
+    .window-attic-left, .window-attic-right { transform: scale(.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .haunt-window.shadow-pass::after { animation: none; opacity: .65; left: 35%; }
+}
