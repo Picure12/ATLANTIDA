@@ -9,7 +9,8 @@ body{min-height:100vh;display:grid;place-items:center;overflow:hidden}
 .fireplace{left:1%;top:32%;width:20%;height:37%}
 .clock{left:21%;top:38%;width:8%;height:29%}
 .portraits{left:23%;top:12%;width:63%;height:28%}
-.stairs{left:36%;top:19%;width:29%;height:38%}
+.stairsL{left:36%;top:2%;width:10%;height:38%}
+.stairsR{right:36%;top:2%;width:10%;height:38%}
 .door{left:85%;top:29%;width:12%;height:39%}
 .flowers{left:69%;top:37%;width:11%;height:19%}
 .dialogue-update{position:absolute;z-index:3;left:20.2%;top:82.5%;width:67.5%;height:9.4%;padding:.2% .5%;color:#f0c7a3;text-shadow:2px 2px #211327;pointer-events:none;font-family:Georgia,serif}
