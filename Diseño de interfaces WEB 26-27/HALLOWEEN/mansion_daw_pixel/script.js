@@ -3,13 +3,6 @@
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
-const loginScreen = $("#login-screen");
-const portalScreen = $("#portal-screen");
-const mansionScreen = $("#mansion-screen");
-const skullButton = $("#skull-toggle");
-const loginPanel = $("#login-panel");
-const loginForm = $("#login-form");
-const loginFeedback = $("#login-feedback");
 const gameMessage = $("#game-msg");
 const dialogueBox = $("#dialogue-box");
 
@@ -161,77 +154,6 @@ function inspectWindow(event) {
   showDialogue(room.title, room.text, "AL OTRO LADO DEL CRISTAL");
 }
 
-function toggleSkull() {
-  const isOpen = skullButton.getAttribute("aria-expanded") === "true";
-  skullButton.setAttribute("aria-expanded", String(!isOpen));
-  skullButton.classList.toggle("is-open", !isOpen);
-  loginPanel.hidden = isOpen;
-  $("#skull-hint").textContent = "La mandíbula guarda un secreto.";
-  if (!isOpen) window.setTimeout(() => $("#user").focus(), 220);
-}
-
-async function verificarCredenciales(usuario, password) {
-  try {
-    const respuesta = await fetch("credenciales.json", { cache: "no-store" });
-    if (!respuesta.ok)
-      throw new Error("No se ha podido leer credenciales.json.");
-    const credenciales = await respuesta.json();
-    return (
-      usuario === credenciales.usuario && password === credenciales.password
-    );
-  } catch (error) {
-    console.error(error);
-    loginFeedback.textContent =
-      "No se pudo cargar el archivo de acceso. Abre el proyecto con Live Server o un servidor local.";
-    return false;
-  }
-}
-
-async function handleLogin(event) {
-  event.preventDefault();
-  const submitButton = $("#login-submit");
-  const usuario = $("#user").value.trim();
-  const password = $("#pass").value;
-  loginFeedback.textContent = "";
-
-  if (!usuario || !password) {
-    loginFeedback.textContent =
-      "La mansión necesita un nombre y una palabra secreta.";
-    return;
-  }
-
-  submitButton.disabled = true;
-  submitButton.textContent = "COMPROBANDO...";
-  const valido = await verificarCredenciales(usuario, password);
-  submitButton.disabled = false;
-  submitButton.innerHTML = "ENTRAR EN LA MANSIÓN <span>→</span>";
-
-  if (!valido) {
-    if (!loginFeedback.textContent)
-      loginFeedback.textContent =
-        "La calavera niega con la cabeza. Esas credenciales no le suenan.";
-    loginForm.classList.remove("login-shake");
-    void loginForm.offsetWidth;
-    loginForm.classList.add("login-shake");
-    return;
-  }
-
-  loginScreen.hidden = true;
-  portalScreen.hidden = false;
-  window.clearTimeout(loginTransitionTimer);
-  loginTransitionTimer = window.setTimeout(() => {
-    portalScreen.hidden = true;
-    mansionScreen.hidden = false;
-    setGameMessage("La noche te recibe. La música llega desde el jardín.");
-    showDialogue(
-      "Una bienvenida peculiar",
-      "La casa lleva años esperando una visita. No parece especialmente contenta de verte.",
-      "EL VESTÍBULO EXTERIOR",
-    );
-    startAmbientLife();
-  }, 1900);
-}
-
 // CUERVO
 function flyCrow() {
   if (crowHasFlown) {
@@ -374,26 +296,8 @@ function talkToNpc(event) {
   showDialogue(dialogue.title, dialogue.text, dialogue.kicker, npc);
 }
 
-function returnToLogin() {
-  window.clearTimeout(loginTransitionTimer);
-  window.clearInterval(ambientTimer);
-  stopMansionEffects();
-  window.clearTimeout(partyEnergyTimer);
-  closeDialogue();
-  mansionScreen.hidden = true;
-  portalScreen.hidden = true;
-  loginScreen.hidden = false;
-  loginPanel.hidden = true;
-  skullButton.classList.remove("is-open");
-  skullButton.setAttribute("aria-expanded", "false");
-  $("#skull-hint").textContent = "La mandíbula guarda un secreto.";
-  loginForm.reset();
-  loginFeedback.textContent = "";
-}
-
 // EVENTOS
-skullButton.addEventListener("click", toggleSkull);
-loginForm.addEventListener("submit", handleLogin);
+
 $("#crow").addEventListener("click", flyCrow);
 $$(".haunt-window[data-room]").forEach((windowButton) =>
   windowButton.addEventListener("click", inspectWindow),
@@ -405,7 +309,6 @@ $("#key-object").addEventListener("click", collectKey);
 $("#front-door").addEventListener("click", enterMansion);
 $$(".npc[data-npc]").forEach((npc) => npc.addEventListener("click", talkToNpc));
 $("#dialogue-close").addEventListener("click", closeDialogue);
-$("#reopen-login").addEventListener("click", returnToLogin);
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !dialogueBox.hidden) closeDialogue();
