@@ -3,7 +3,7 @@
 
 require_once 'conexion.php';
 
-$dni = "77777777G";
+$dni = "77777777A";
 $nombre = "Ana García";
 $edad = 23;
 
