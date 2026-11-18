@@ -11,3 +11,6 @@
 | **Ver mis reservas** | 🟢 Alta | 🟢 Alta | ⚪ - | 🟡 Media |
 | Crear experiencia nueva | ⚪ - | 🟠 Baja | ⚪ - | 🟢 Alta |
 | Responder mensaje | 🟠 Baja | 🟢 Alta | ⚪ - | 🟢 Alta |
+
+
+

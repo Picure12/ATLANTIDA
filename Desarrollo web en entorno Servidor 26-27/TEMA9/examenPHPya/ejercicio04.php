@@ -2,24 +2,32 @@
 <?php
 
 require_once 'conexion.php';
-$edad1 = 21;
-$edad2 = 24;
+$texto = 'a';
+
+$busqueda = "%" . $texto . "%";
 
 $sql = " SELECT nombre, edad 
 FROM alumnos
-WHERE edad = ? OR edad = ?";
+WHERE nombre LIKE ? 
+ORDER BY nombre ASC";
 
 $stmt =$db->prepare($sql);
-$stmt->bind_param("ii",$edad1, $edad2);
+$stmt->bind_param("s",$busqueda);
 $stmt->execute();
 
 $resultado = $stmt->get_result();
 
-while ($fila = $resultado->fetch_assoc()){
+if ($resultado->num_rows > 0){
+    
+while ($fila = $resultado->fetch_assoc()) {
     echo htmlspecialchars($fila['nombre']);
     echo " - ";
     echo $fila['edad'];
     echo "<br>";
+ }
+
+}else{
+    echo "no hay alumnos con la a ";
 }
 
 $resultado->free();

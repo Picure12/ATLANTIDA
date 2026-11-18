@@ -2,13 +2,18 @@
 
 require_once 'conexion.php';
 
+$edadMinima =21; 
+
 $sql = " SELECT nombre, edad 
 FROM alumnos
-ORDER BY edad DESC
-LIMIT 2";
+WHERE edad >= ? 
+ORDER BY edad DESC, nombre ASC";
 
-$resultado = $db->query($sql);
+$stmt =$db->prepare($sql);
+$stmt->bind_param("i", $edadMinima);
+$stmt->execute();
 
+$resultado = $stmt->get_result();
 
 echo "<table border='1'>";
 echo "<tr>";
@@ -26,3 +31,6 @@ echo "</table>";
 
 $resultado->free();
 $db->close();
+$stmt->close();
+
+
