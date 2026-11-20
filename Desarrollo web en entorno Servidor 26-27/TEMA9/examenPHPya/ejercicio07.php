@@ -2,9 +2,9 @@
 
 require_once 'conexion.php';
 
-$dni = '77777777A';
+$dni = '22222222B';
 $codigo = 1;
-$anio = 2026;
+$anio = 2025;
 
 $sql = "DELETE FROM matriculas 
 WHERE dni = ? AND codigo = ? AND anio = ?";
@@ -16,10 +16,11 @@ $stmt->execute();
 $filas = $stmt-> affected_rows;
 
 if($filas == 1){
-    echo "Nota actualizada";
-} elseif($filas == 0) {
-    echo "Error";  
+    echo "Matricula eliminada";
+}else{
+    echo "No encontrada";
 }
+
 
 $stmt->close();
 $db->close();
