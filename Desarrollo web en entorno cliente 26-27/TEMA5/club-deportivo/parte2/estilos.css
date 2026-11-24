@@ -1,0 +1,70 @@
+body { 
+    font-family: Arial, sans-serif;
+    background: #eee; margin: 0;
+    color: #222; 
+}
+
+header { 
+    background: #234b38; 
+    color: white; 
+    padding: 20px; 
+    text-align: center;
+ }
+
+nav a { 
+    color: white; margin: 8px; 
+    display: inline-block; 
+}
+
+main { 
+    max-width: 700px; 
+    margin: 20px auto; 
+    padding: 0 15px; 
+}
+
+section { 
+    background: white; 
+    padding: 20px; 
+    margin-bottom: 20px; 
+    border: 1px solid #ccc; 
+}
+
+
+.campo { 
+    margin-bottom: 14px; 
+}
+
+label { 
+    display: block; 
+    margin-bottom: 5px; 
+}
+input:not([type=checkbox]):not([type=radio]), select, textarea { 
+    box-sizing: border-box; 
+    width: 100%; 
+    padding: 8px; 
+    border: 1px solid #aaa; 
+}
+
+textarea { 
+    min-height: 80px; 
+}
+button { 
+    padding: 9px 15px; 
+    background: #234b38; 
+    color: white;
+    border: 0; 
+    cursor: pointer; 
+}
+
+.error { 
+    color: #a00000; 
+    display: block; 
+    font-size: 14px; 
+}
+
+[aria-invalid=true] { 
+    outline: 2px solid #a00000; 
+}
+.aviso { 
+    color: #234b38; font-weight: bold; 
+}

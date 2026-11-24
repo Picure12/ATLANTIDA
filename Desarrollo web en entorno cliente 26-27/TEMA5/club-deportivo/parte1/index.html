@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Club deportivo</title>
+<link rel="stylesheet" href="estilos.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<header><h1>Club deportivo</h1><nav><a href="#socios">Socios</a> <a href="#servicios">Servicios</a> <a href="#testimonios">Testimonios</a> <a href="#noticias">Noticias</a> <a href="#citas">Citas</a></nav></header>
+<main>
+<section id="socios"><h2>Socios</h2>
+<form id="form-socios" novalidate>
+<div class="campo">
+<label for="nombre">Nombre completo</label>
+<input id="nombre" name="nombre" type="text" required minlength="4" maxlength="50" aria-describedby="err-nombre">
+<span class="error" id="err-nombre" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="usuario">Usuario</label>
+<input id="usuario" name="usuario" type="text" required minlength="5" maxlength="20" aria-describedby="err-usuario">
+<span class="error" id="err-usuario" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="correo">Correo</label>
+<input id="correo" name="correo" type="email" required aria-describedby="err-correo">
+<span class="error" id="err-correo" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="edad">Edad</label>
+<input id="edad" name="edad" type="number" required min="18" max="100" step="1" aria-describedby="err-edad">
+<span class="error" id="err-edad" aria-live="polite"></span>
+</div>
+<div class="campo">
+<fieldset><legend>Modalidad</legend><label><input type="radio" id="mensual" name="modalidad" value="mensual" required aria-describedby="err-modalidad"> Mensual</label><label><input type="radio" id="anual" name="modalidad" value="anual" required aria-describedby="err-modalidad"> Anual</label></fieldset>
+<span class="error" id="err-modalidad" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="clave">Contraseña</label>
+<input id="clave" name="clave" type="password" required minlength="8" maxlength="16" aria-describedby="err-clave">
+<span class="error" id="err-clave" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="confirmar">Confirmar contraseña</label>
+<input id="confirmar" name="confirmar" type="password" required aria-describedby="err-confirmar">
+<span class="error" id="err-confirmar" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="telefono">Teléfono</label>
+<input id="telefono" name="telefono" type="tel" required aria-describedby="err-telefono">
+<span class="error" id="err-telefono" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="foto">Foto de perfil</label>
+<input id="foto" name="foto" type="file" required accept="image/jpeg" aria-describedby="err-foto">
+<span class="error" id="err-foto" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="condiciones"><input id="condiciones" name="condiciones" type="checkbox" required aria-describedby="err-condiciones"> Acepto las condiciones</label>
+<span class="error" id="err-condiciones" aria-live="polite"></span>
+</div>
+<button type="submit">Comprobar</button><p class="aviso" role="status"></p>
+</form></section>
+<section id="servicios"><h2>Servicios</h2>
+<form id="form-servicios" novalidate>
+<div class="campo">
+<label for="nombreServicio">Nombre</label>
+<input id="nombreServicio" name="nombreServicio" type="text" required minlength="3" maxlength="50" aria-describedby="err-nombreServicio">
+<span class="error" id="err-nombreServicio" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="duracion">Duración (minutos)</label>
+<input id="duracion" name="duracion" type="number" required min="15" step="15" aria-describedby="err-duracion">
+<span class="error" id="err-duracion" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="precio">Precio (€)</label>
+<input id="precio" name="precio" type="number" required min="0" max="9999.99" step="0.01" aria-describedby="err-precio">
+<span class="error" id="err-precio" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="categoria">Categoría</label>
+<select id="categoria" name="categoria" required aria-describedby="err-categoria"><option value="">Seleccionar categoría</option><option>Fitness</option><option>Natación</option><option>Pádel</option></select>
+<span class="error" id="err-categoria" aria-live="polite"></span>
+</div>
+<button type="submit">Comprobar</button><p class="aviso" role="status"></p>
+</form></section>
+<section id="testimonios"><h2>Testimonios</h2>
+<form id="form-testimonios" novalidate>
+<div class="campo">
+<label for="autor">Autor</label>
+<input id="autor" name="autor" type="text" required minlength="2" maxlength="50" aria-describedby="err-autor">
+<span class="error" id="err-autor" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="testimonio">Testimonio</label>
+<textarea id="testimonio" name="testimonio" required minlength="10" maxlength="500" aria-describedby="err-testimonio"></textarea>
+<span class="error" id="err-testimonio" aria-live="polite"></span>
+<p id="contador">0 / 500</p>
+</div>
+<div class="campo">
+<label for="publicar"><input id="publicar" name="publicar" type="checkbox"  aria-describedby="err-publicar"> Autorizo su publicación</label>
+<span class="error" id="err-publicar" aria-live="polite"></span>
+</div>
+<button type="submit">Comprobar</button><p class="aviso" role="status"></p>
+</form></section>
+<section id="noticias"><h2>Noticias</h2>
+<form id="form-noticias" novalidate>
+<div class="campo">
+<label for="titulo">Título</label>
+<input id="titulo" name="titulo" type="text" required minlength="3" maxlength="100" aria-describedby="err-titulo">
+<span class="error" id="err-titulo" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="contenido">Contenido</label>
+<textarea id="contenido" name="contenido" required minlength="20" maxlength="2000" aria-describedby="err-contenido"></textarea>
+<span class="error" id="err-contenido" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="fecha">Fecha de publicación</label>
+<input id="fecha" name="fecha" type="date" required aria-describedby="err-fecha">
+<span class="error" id="err-fecha" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="imagen">Imagen</label>
+<input id="imagen" name="imagen" type="file" required accept="image/jpeg" aria-describedby="err-imagen">
+<span class="error" id="err-imagen" aria-live="polite"></span>
+</div>
+<button type="submit">Comprobar</button><p class="aviso" role="status"></p>
+</form></section>
+<section id="citas"><h2>Citas</h2>
+<form id="form-citas" novalidate>
+<div class="campo">
+<label for="socio">Socio</label>
+<select id="socio" name="socio" required aria-describedby="err-socio"><option value="">Seleccionar socio</option><option>Ana López</option><option>Luis García</option><option>Marta Ruiz</option></select>
+<span class="error" id="err-socio" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="servicio">Servicio</label>
+<select id="servicio" name="servicio" required aria-describedby="err-servicio"><option value="">Seleccionar servicio</option><option>Fitness</option><option>Natación</option><option>Pádel</option></select>
+<span class="error" id="err-servicio" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="fechaCita">Fecha y hora</label>
+<input id="fechaCita" name="fechaCita" type="datetime-local" required aria-describedby="err-fechaCita">
+<span class="error" id="err-fechaCita" aria-live="polite"></span>
+</div>
+<div class="campo">
+<label for="revision"><input id="revision" name="revision" type="checkbox" required aria-describedby="err-revision"> He revisado los datos de la cita</label>
+<span class="error" id="err-revision" aria-live="polite"></span>
+</div>
+<button type="submit">Comprobar</button><p class="aviso" role="status"></p>
+</form></section>
+</main>
+</body>
+</html>
