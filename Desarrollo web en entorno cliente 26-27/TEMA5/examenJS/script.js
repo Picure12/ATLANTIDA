@@ -96,7 +96,7 @@ if (lista5 && total5) {
     function actualizarTotal() {
         total5.textContent = lista5.querySelectorAll("li").length;
     }
-
+ 
     lista5.addEventListener("click", function(evento) {
 
         const boton = evento.target.closest(".borrar");
@@ -124,6 +124,7 @@ if (reserva) {
     const errNombre = document.querySelector("#errNombre");
     const errCiudad = document.querySelector("#errCiudad");
     const aviso = document.querySelector("#aviso");
+
 
     reserva.addEventListener("submit", function(evento) {
 
@@ -179,6 +180,85 @@ if (comprobar) {
             error.textContent = "";
         } else {
             error.textContent = "Cantidad no válida";
+        }
+
+    });
+}
+
+
+// EJERCICIO 8
+
+const envio = document.querySelector("#envio");
+
+if (envio) {
+
+    const socio8 = document.querySelector("#socio");
+    const precio8 = document.querySelector("#precio");
+
+    function calcularPrecio() {
+
+        let precio = 30;
+
+        if (socio8.checked) {
+            precio = precio * 0.90;
+        }
+
+        if (envio.value === "domicilio") {
+            precio += 4;
+        }
+
+        precio8.textContent = precio.toFixed(2) + " €";
+    }
+
+    envio.addEventListener("change", calcularPrecio);
+    socio8.addEventListener("change", calcularPrecio);
+
+    calcularPrecio();
+}
+
+
+// EJERCICIO 9
+
+function codigoValido(texto) {
+
+    const regex = /^(VIN|CD)-[0-9]{3}[A-Z]?$/;
+
+    return regex.test(texto);
+}
+
+console.log(codigoValido("VIN-456"));  // true
+console.log(codigoValido("CD-321B"));  // true
+console.log(codigoValido("VIN-12"));   // false
+console.log(codigoValido("CD-123a"));  // false
+
+
+
+// EJERCICIO 10
+
+const alta = document.querySelector("#alta");
+
+if (alta) {
+
+    const alias = document.querySelector("#alias");
+    const resultado = document.querySelector("#resultado");
+
+    alta.addEventListener("submit", function(evento) {
+
+        evento.preventDefault();
+
+        alias.setCustomValidity("");
+
+        alias.value = alias.value.trim();
+
+        if (alias.value.toLowerCase() === "admin") {
+            alias.setCustomValidity("El alias admin está reservado");
+        }
+
+        if (!alias.checkValidity()) {
+            resultado.textContent = alias.validationMessage;
+            alias.focus();
+        } else {
+            resultado.textContent = "Alias válido";
         }
 
     });
